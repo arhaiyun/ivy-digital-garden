@@ -5,6 +5,9 @@ dist/
 .vitepress/cache/
 .vitepress/dist/
 
+# clock native binary
+tools/clock/.build/
+
 # Environment & secrets
 .env
 .env.*
