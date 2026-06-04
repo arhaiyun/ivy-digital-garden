@@ -1,0 +1,24 @@
+# Ivy 档案 — 请填写出生日期等基础信息
+# 出生日期用于月龄计算、里程碑排序与站点展示
+
+profile:
+  name: Ivy
+  name_zh: "" # 可选：小名、乳名
+  birth_date: "2026-03-05"
+  birth_place: 上海
+  gender: "" # 可选，仅用于家庭记录
+
+garden:
+  started_at: "2026-06-04" # 本仓库创建日，可改
+  language: zh-CN
+  visibility_default: family # family | private | public
+
+# 里程碑快捷标签（可在条目中复用）
+milestone_tags:
+  - 第一次微笑
+  - 第一次发声
+  - 抬头
+  - 翻身
+  - 认人
+  - 体检
+  - 疫苗

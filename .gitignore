@@ -1,0 +1,27 @@
+# Dependencies & build
+node_modules/
+.pnpm-store/
+dist/
+.vitepress/cache/
+.vitepress/dist/
+
+# Environment & secrets
+.env
+.env.*
+!.env.example
+
+# OS & editors
+.DS_Store
+Thumbs.db
+*.swp
+.idea/
+.vscode/*
+!.vscode/extensions.json
+
+# Local-only overrides (never commit)
+content/**/*.local.md
+data/**/*.local.yaml
+
+# Optional: large raw exports (use Git LFS in media/ instead)
+exports/
+*.zip
