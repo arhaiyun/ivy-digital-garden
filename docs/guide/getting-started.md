@@ -7,8 +7,8 @@
 ## 2. 写一篇记录
 
 ```bash
-# 例：复制日记模板
-cp templates/journal.md content/journal/2026-06-10-第一次笑.md
+# 例：从日记模板生成新条目
+./scripts/new-entry.sh journal 2026-06-10 第一次笑
 ```
 
 编辑 frontmatter：
@@ -21,26 +21,40 @@ cp templates/journal.md content/journal/2026-06-10-第一次笑.md
 | `visibility` | `family`（默认）/ `private` / `public` |
 | `tags` | 标签数组 |
 
-## 3. 添加照片
+## 3. 添加媒体（图 / 视频 / 音频）
 
-1. 放入 `media/photos/YYYY/MM/文件名.jpg`
-2. 确保已 `git lfs install`
-3. Markdown 引用：`![描述](/photos/YYYY/MM/文件名.jpg)`
+**手工：**
 
-## 4. 本地预览站点
+1. 放入 `media/photos|videos|audio/YYYY/MM/`
+2. `git lfs install` 后提交
+3. 在 Markdown 或 `data/catalog/<id>.yaml` 的 `assets` 里绑定
+
+**批量导入：**
 
 ```bash
-pnpm install
-pnpm dev
+npm run import:media -- --from ~/Downloads/batch --date 2026-06-10 --title "第一次去公园"
 ```
 
-浏览器打开终端提示的地址（通常 `http://localhost:5173`）。
+详见 [catalog-schema.md](./catalog-schema.md)、[import-media.md](./import-media.md)。
+
+## 4. 本地预览
+
+```bash
+npm install
+npm run build:all   # 文档站 + 资源总览
+npm run preview     # http://127.0.0.1:4173
+```
+
+- 文档站：`/`
+- 资源总览：`/viewer/`（时间轴、媒体墙、统计）
+
+开发热更新：`npm run dev`（5173）、`npm run viewer:dev`（5180）
 
 ## 5. 构建与部署（家人私密）
 
 ```bash
-pnpm build
-# 产物在 .vitepress/dist
+npm run build:all
+# 产物在 .vitepress/dist（含 /viewer/）
 ```
 
 建议：

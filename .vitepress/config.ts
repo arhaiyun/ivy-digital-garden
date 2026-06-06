@@ -1,4 +1,5 @@
 import { defineConfig } from 'vitepress'
+import { buildSidebar } from './sidebar.mjs'
 
 export default defineConfig({
   lang: 'zh-CN',
@@ -17,6 +18,7 @@ export default defineConfig({
   themeConfig: {
     nav: [
       { text: '首页', link: '/' },
+      { text: '资源总览', link: '/viewer/' },
       { text: '日记', link: '/journal/' },
       { text: '里程碑', link: '/milestones/' },
       { text: '健康', link: '/health/' },
@@ -25,12 +27,12 @@ export default defineConfig({
       { text: '愿望', link: '/wishes/' },
     ],
     sidebar: {
-      '/journal/': [{ text: '成长日记', items: sidebarAuto('journal') }],
-      '/milestones/': [{ text: '里程碑', items: sidebarAuto('milestones') }],
-      '/health/': [{ text: '健康记录', items: sidebarAuto('health') }],
-      '/family/': [{ text: '家族故事', items: sidebarAuto('family') }],
-      '/creative/': [{ text: '作品存档', items: sidebarAuto('creative') }],
-      '/wishes/': [{ text: '愿望清单', items: sidebarAuto('wishes') }],
+      '/journal/': [{ text: '成长日记', items: buildSidebar('content', 'journal') }],
+      '/milestones/': [{ text: '里程碑', items: buildSidebar('content', 'milestones') }],
+      '/health/': [{ text: '健康记录', items: buildSidebar('content', 'health') }],
+      '/family/': [{ text: '家族故事', items: buildSidebar('content', 'family') }],
+      '/creative/': [{ text: '作品存档', items: buildSidebar('content', 'creative') }],
+      '/wishes/': [{ text: '愿望清单', items: buildSidebar('content', 'wishes') }],
     },
     footer: {
       message: '仅供家人查看 · 请勿公开索引',
@@ -51,10 +53,3 @@ export default defineConfig({
     publicDir: 'media',
   },
 })
-
-function sidebarAuto(section: string) {
-  return [
-    { text: '栏目首页', link: `/${section}/` },
-    { text: '（新文章将出现在侧边栏）', link: '#' },
-  ]
-}

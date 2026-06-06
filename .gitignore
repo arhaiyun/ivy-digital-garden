@@ -1,5 +1,6 @@
 # Dependencies & build
 node_modules/
+.npm-cache/
 .pnpm-store/
 dist/
 .vitepress/cache/
@@ -7,6 +8,12 @@ dist/
 
 # clock native binary
 tools/clock/.build/
+
+# generated catalog copies
+viewer/public/catalog.json
+data/catalog.json
+viewer/dist/
+viewer/node_modules/
 
 # Environment & secrets
 .env

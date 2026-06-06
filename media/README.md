@@ -7,20 +7,20 @@
 ```
 media/
 ├── photos/
-│   └── YYYY/
-│       └── MM/
-│           └── 简短描述.jpg
-└── videos/
-    └── YYYY/
-        └── MM/
-            └── 简短描述.mp4
+│   └── YYYY/MM/
+├── videos/
+│   └── YYYY/MM/
+├── audio/
+│   └── YYYY/MM/
+└── viewer/          # 构建产物（npm run build:all 生成）
 ```
 
 ## 使用建议
 
 - 每月精选 5–15 张入仓即可，原片可留在手机相册 / iCloud
 - 单文件建议 &lt; 20MB（视频更宜短片段）
-- 在 Markdown 中引用：`![说明](/photos/2026/06/xxx.jpg)`（站点将 `media/` 作为静态根目录）
+- 在 Markdown 中引用：`![说明](/photos/2026/06/xxx.jpg)`、`<video controls src="/videos/...">`、`<audio controls src="/audio/...">`
+- 批量导入：`npm run import:media -- --from ~/Downloads/batch --date 2026-06-10 --title "第一次去公园"`
 
 ## 首次启用 LFS
 

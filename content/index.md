@@ -16,6 +16,9 @@ features:
   - title: 健康
     details: 体检与疫苗（敏感信息，保持私密）
     link: /health/
+  - title: 资源总览
+    details: 时间轴、媒体墙与统计仪表盘
+    link: /viewer/
   - title: 更多
     details: 家族故事、作品与愿望清单
     link: /family/
@@ -28,7 +31,7 @@ features:
 1. 在 `data/ivy.yaml` 填写 Ivy 的出生日期
 2. 从 `templates/` 复制模板到对应 `content/` 子目录
 3. 精选照片放入 `media/photos/`，用 Git LFS 管理
-4. 本地预览站点：`pnpm dev`
+4. 本地预览站点：`npm run dev`
 
 ## 栏目
 

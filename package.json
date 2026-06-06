@@ -7,12 +7,25 @@
   "scripts": {
     "dev": "vitepress dev --host 127.0.0.1 --port 5173",
     "build": "vitepress build",
+    "catalog:build": "node scripts/build-catalog.mjs",
+    "import:media": "node scripts/import-media.mjs",
+    "viewer:install": "npm install --prefix viewer",
+    "viewer:prepare": "node scripts/prepare-viewer.mjs",
+    "viewer:dev": "npm run viewer:prepare && npm run viewer:install && npm --prefix viewer run dev",
+    "viewer:build": "npm run viewer:prepare && npm run viewer:install && npm --prefix viewer run build",
+    "viewer:sync": "node scripts/sync-viewer.mjs",
+    "build:all": "npm run viewer:build && npm run build && npm run viewer:sync",
+    "start:all": "npm run build:all && npm run preview",
+    "open:all": "npm run build:all && vitepress preview --host 127.0.0.1 --port 4173 & sleep 2 && open http://127.0.0.1:4173/ && open http://127.0.0.1:4173/viewer/",
+    "test": "node --test tests/*.test.mjs",
+    "check": "npm run test && node scripts/validate-content.mjs && npm run build:all",
     "preview": "vitepress preview --host 127.0.0.1 --port 4173",
     "start": "npm run build && npm run preview",
     "open": "npm run build && vitepress preview --host 127.0.0.1 --port 4173 & sleep 2 && open http://127.0.0.1:4173/"
   },
   "devDependencies": {
-    "vitepress": "^1.6.3"
+    "vitepress": "^1.6.3",
+    "yaml": "^2.7.0"
   },
   "engines": {
     "node": ">=18"
