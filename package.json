@@ -5,9 +5,11 @@
   "description": "Ivy 的数字花园 — 成长档案与家人站点",
   "type": "module",
   "scripts": {
-    "dev": "vitepress dev",
+    "dev": "vitepress dev --host 127.0.0.1 --port 5173",
     "build": "vitepress build",
-    "preview": "vitepress preview"
+    "preview": "vitepress preview --host 127.0.0.1 --port 4173",
+    "start": "npm run build && npm run preview",
+    "open": "npm run build && vitepress preview --host 127.0.0.1 --port 4173 & sleep 2 && open http://127.0.0.1:4173/"
   },
   "devDependencies": {
     "vitepress": "^1.6.3"

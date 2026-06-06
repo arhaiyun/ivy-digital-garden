@@ -41,4 +41,4 @@ features:
 | 作品 | [creative/](./creative/) | 涂鸦、手工等 |
 | 愿望 | [wishes/](./wishes/) | 对未来的期许 |
 
-> 本仓库建议保持 **GitHub 私有**，部署站点时启用访问控制。详见 [使用指南](../docs/guide/getting-started.md)。
+> 本仓库建议保持 **GitHub 私有**，部署站点时启用访问控制。
