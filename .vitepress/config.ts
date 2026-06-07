@@ -1,5 +1,11 @@
+import { readFileSync } from 'node:fs'
 import { defineConfig } from 'vitepress'
+import { parse as parseYaml } from 'yaml'
 import { buildSidebar } from './sidebar.mjs'
+
+const ivyYaml = parseYaml(readFileSync('data/ivy.yaml', 'utf8')) as {
+  profile?: { birth_date?: string }
+}
 
 export default defineConfig({
   lang: 'zh-CN',
@@ -16,6 +22,7 @@ export default defineConfig({
   ],
 
   themeConfig: {
+    ivyBirthDate: ivyYaml.profile?.birth_date ?? '',
     nav: [
       { text: '首页', link: '/' },
       { text: '资源总览', link: '/viewer/' },

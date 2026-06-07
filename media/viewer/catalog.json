@@ -12,20 +12,81 @@
     "visibility_default": "family"
   },
   "stats": {
-    "entries": 2,
+    "entries": 4,
     "byType": {
-      "journal": 1,
-      "playlist": 1
+      "journal": 2,
+      "playlist": 2
     },
     "byKind": {
       "photo": 0,
       "video": 0,
-      "audio": 0
+      "audio": 3
     },
     "missingAssets": 0,
-    "updatedAt": "2026-06-07T13:45:51.231Z"
+    "updatedAt": "2026-06-07T14:32:49.762Z"
   },
   "entries": [
+    {
+      "id": "2026-06-06-稻香",
+      "date": "2026-06-06",
+      "type": "playlist",
+      "title": "稻香",
+      "visibility": "family",
+      "tags": [
+        "流行",
+        "亲子互动",
+        "周杰伦"
+      ],
+      "author": "",
+      "artist": "周杰伦",
+      "ivy_age_months": 3,
+      "scene": "亲子互动",
+      "memory": "今天和 Ivy 一起听了这首歌。前奏一出来，她就安静下来，好像也被稻香里的温柔留住了。",
+      "links": [],
+      "content": "content/playlist/2026-06-06-稻香.md",
+      "link": "/playlist/2026-06-06-稻香",
+      "assets": [
+        {
+          "id": "01-daoxiang.m4a",
+          "kind": "audio",
+          "path": "media/audio/2026/06/01-daoxiang.m4a",
+          "url": "/audio/2026/06/01-daoxiang.m4a",
+          "caption": "",
+          "exists": true
+        }
+      ],
+      "summary": "今天和 Ivy 一起听了这首歌。前奏一出来，她就安静下来，好像也被稻香里的温柔留住了。"
+    },
+    {
+      "id": "2026-06-06-一起听稻香",
+      "date": "2026-06-06",
+      "type": "journal",
+      "title": "一起听稻香",
+      "visibility": "family",
+      "tags": [
+        "音乐",
+        "亲子"
+      ],
+      "author": "爸爸妈妈",
+      "artist": "",
+      "ivy_age_months": null,
+      "scene": "",
+      "memory": "",
+      "links": [],
+      "content": "content/journal/2026-06-06-一起听稻香.md",
+      "link": "/journal/2026-06-06-一起听稻香",
+      "assets": [
+        {
+          "id": "01-daoxiang.m4a",
+          "kind": "audio",
+          "path": "media/audio/2026/06/01-daoxiang.m4a",
+          "url": "/audio/2026/06/01-daoxiang.m4a",
+          "caption": "",
+          "exists": true
+        }
+      ],
+      "summary": "一起听稻香 今日小事 今天和 Ivy 一起听了周杰伦的《稻香》 旋律一响，她安安静静地听着，好像也被歌里的温柔留住了 想对 Ivy 说 稻香里唱着回家、写着童年。希望你长大以后，再听到这首歌时，还能想起今天——我们窝在一起，什么都不赶，只是"
+    },
     {
       "id": "2026-06-04-花园启程",
       "date": "2026-06-04",
@@ -62,16 +123,19 @@
       "ivy_age_months": 0,
       "scene": "睡前",
       "memory": "Ivy 刚出生不久，哄睡时常常哼这首歌，旋律简单温柔，好像她听得出爸爸妈妈在身边。",
-      "links": [
-        {
-          "platform": "netease",
-          "url": "https://music.163.com/#/song?id=1299559482",
-          "label": "网易云"
-        }
-      ],
+      "links": [],
       "content": "content/playlist/2026-03-15-小星星.md",
       "link": "/playlist/2026-03-15-小星星",
-      "assets": [],
+      "assets": [
+        {
+          "id": "01-xiaoxingxing.mp4",
+          "kind": "audio",
+          "path": "media/audio/2026/03/01-xiaoxingxing.mp4",
+          "url": "/audio/2026/03/01-xiaoxingxing.mp4",
+          "caption": "",
+          "exists": true
+        }
+      ],
       "summary": "Ivy 刚出生不久，哄睡时常常哼这首歌，旋律简单温柔，好像她听得出爸爸妈妈在身边。"
     }
   ]

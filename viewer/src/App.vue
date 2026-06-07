@@ -27,7 +27,7 @@ const ageDays = computed(() => {
   if (!birth) return null
   const start = new Date(`${birth}T00:00:00`)
   const now = new Date()
-  return Math.floor((now - start) / 86400000)
+  return Math.floor((now - start) / 86400000) + 1
 })
 
 const pills = computed(() => [

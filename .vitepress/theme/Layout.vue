@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import DefaultTheme from 'vitepress/theme'
+import IvyHomeAge from './components/IvyHomeAge.vue'
 
 const DefaultLayout = DefaultTheme.Layout
 </script>
@@ -12,6 +13,7 @@ const DefaultLayout = DefaultTheme.Layout
       <div class="ivy-cloud" />
     </div>
     <DefaultLayout />
+    <IvyHomeAge />
   </div>
 </template>
 

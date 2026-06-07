@@ -1,6 +1,6 @@
 # 成长歌单
 
-**一首歌一篇**，支持外链 + 本地音频（可并存）。
+**一首歌一篇**，以本地音频为主（`media/audio/`），不放外链。
 
 ## 新建
 
@@ -16,22 +16,13 @@
 | `ivy_age_months` | 开始常听时的月龄 |
 | `scene` | 睡前 / 洗澡 / 外出 等 |
 | `memory` | 为什么选这首（短述） |
-| `links` | 在线平台链接 |
-| `assets` | 本地音频（`media/audio/`） |
+| `assets` | 本地音频（`media/audio/`，必填） |
 
-## links 示例
+## 下载音频
 
-```yaml
-links:
-  - platform: netease
-    url: https://music.163.com/#/song?id=...
-  - platform: qq
-    url: https://y.qq.com/n/...
-  - platform: apple
-    url: https://music.apple.com/...
+```bash
+./scripts/fetch-playlist-audio.sh "稻香 周杰伦" 2026/06 01-daoxiang
 ```
-
-`platform` 常用值：`netease` `qq` `apple` `spotify` `youtube` `other`
 
 ## 本地哼唱/录音
 

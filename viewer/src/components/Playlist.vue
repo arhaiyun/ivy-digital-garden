@@ -21,9 +21,7 @@ defineProps({
           <span v-if="entry.ivy_age_months != null"> · {{ entry.ivy_age_months }}月龄</span>
           <span v-if="entry.scene"> · {{ entry.scene }}</span>
         </div>
-        <div v-if="entry.links?.length" class="links">
-          <span v-for="link in entry.links" :key="link.url">{{ link.label }}</span>
-        </div>
+        <div v-if="entry.assets?.length" class="local-tag">本地音频</div>
       </div>
     </a>
   </div>
@@ -76,18 +74,13 @@ defineProps({
   margin-top: 4px;
 }
 
-.links {
-  display: flex;
-  gap: 6px;
+.local-tag {
+  display: inline-block;
   margin-top: 8px;
-  flex-wrap: wrap;
-}
-
-.links span {
   font-size: 11px;
   padding: 4px 8px;
   border-radius: 8px;
-  background: var(--ivy-lav);
+  background: var(--ivy-mint);
   color: var(--ivy-ink);
 }
 

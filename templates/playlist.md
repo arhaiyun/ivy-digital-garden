@@ -9,12 +9,15 @@ scene: ""
 memory: ""
 tags: []
 links: []
-assets: []
+assets:
+  - kind: audio
+    path: media/audio/YYYY/MM/filename.m4a
+    caption: ""
 ---
 
 # {{title}}
 
-> 一首歌一篇。可填外链（网易云/QQ音乐等）和/或本地音频 `media/audio/`。
+> 一首歌一篇。音频放入 `media/audio/`，正文用 `<audio>` 播放，不放外链。
 
 ## 基本信息
 
@@ -27,15 +30,6 @@ assets: []
 ## 为什么选这首
 
 {{memory}}
-
-## 在线收听
-
-<!-- links 示例（frontmatter 中填写更佳，便于 catalog 收录）： -->
-<!-- links: -->
-<!--   - platform: netease -->
-<!--     url: https://music.163.com/ -->
-<!--   - platform: qq -->
-<!--     url: https://y.qq.com/ -->
 
 ## 本地音频
 
