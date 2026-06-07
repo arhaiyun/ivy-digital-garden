@@ -1,177 +1,80 @@
 <script setup>
-import { computed } from 'vue'
-
-const props = defineProps({
+defineProps({
   entries: { type: Array, required: true },
 })
 
-const TYPE_LABEL = {
-  journal: '日记',
-  milestone: '里程碑',
-  health: '健康',
-  family: '家族',
-  creative: '作品',
-  wish: '愿望',
-  playlist: '歌单',
-}
-
-const PLATFORM = {
-  netease: '网易云',
-  qq: 'QQ音乐',
-  apple: 'Apple Music',
-  spotify: 'Spotify',
-  youtube: 'YouTube',
-  other: '链接',
-}
-
-const groups = computed(() => {
-  const map = new Map()
-  for (const entry of props.entries) {
-    const key = entry.date?.slice(0, 7) || '未知'
-    if (!map.has(key)) map.set(key, [])
-    map.get(key).push(entry)
-  }
-  return [...map.entries()].sort((a, b) => b[0].localeCompare(a[0]))
-})
+const dots = ['peach', 'lav', 'mint']
 </script>
 
 <template>
-  <section class="timeline">
-    <div v-if="entries.length === 0" class="empty">当前筛选下没有条目。</div>
-    <div v-for="[month, monthEntries] in groups" :key="month" class="month">
-      <h2>{{ month }}</h2>
-      <article v-for="entry in monthEntries" :key="entry.id" class="item">
-        <div class="meta">
-          <span class="date">{{ entry.date }}</span>
-          <span class="type">{{ TYPE_LABEL[entry.type] || entry.type }}</span>
-        </div>
-        <div class="body">
-          <h3>
-            <a :href="entry.link">{{ entry.title }}</a>
-          </h3>
-          <p v-if="entry.artist" class="artist">{{ entry.artist }}<span v-if="entry.ivy_age_months != null"> · {{ entry.ivy_age_months }} 月龄起</span><span v-if="entry.scene"> · {{ entry.scene }}</span></p>
-          <p>{{ entry.summary || '暂无摘要' }}</p>
-          <div v-if="entry.links?.length" class="links">
-            <a v-for="link in entry.links" :key="link.url" :href="link.url" target="_blank" rel="noopener" class="link-chip">
-              {{ link.label || PLATFORM[link.platform] || link.platform }}
-            </a>
-          </div>
-          <div class="assets">
-            <span v-for="asset in entry.assets" :key="asset.path" class="chip" :class="asset.kind">
-              {{ asset.kind }} · {{ asset.caption || asset.id }}
-            </span>
-            <span v-if="!entry.assets?.length" class="chip muted">纯文字</span>
-          </div>
-        </div>
-      </article>
+  <div class="dot-line">
+    <div v-if="entries.length === 0" class="empty">还没有记录，去写一篇吧 ~</div>
+    <div v-for="(entry, index) in entries" :key="entry.id" class="dot-event">
+      <div class="dot" :class="dots[index % dots.length]" />
+      <div>
+        <a :href="entry.link"><strong>{{ entry.title }}</strong></a>
+        <div class="meta">{{ entry.date }}<span v-if="entry.scene"> · {{ entry.scene }}</span></div>
+        <p v-if="entry.summary">{{ entry.summary }}</p>
+      </div>
     </div>
-  </section>
+  </div>
 </template>
 
 <style scoped>
-.timeline {
-  display: grid;
-  gap: 28px;
+.dot-line {
+  padding-left: 8px;
 }
 
-.month h2 {
-  margin: 0 0 14px;
-  color: var(--brand);
+.dot-event {
+  display: flex;
+  gap: 14px;
+  padding: 14px 0;
 }
 
-.item {
-  display: grid;
-  grid-template-columns: 140px 1fr;
-  gap: 18px;
-  padding: 18px 0;
-  border-bottom: 1px solid var(--line);
+.dot-line .dot-event:not(:last-child) {
+  border-left: 3px dotted var(--ivy-peach);
+  margin-left: 7px;
+  padding-left: 20px;
+}
+
+.dot {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin-top: 4px;
+  border: 3px solid #fff;
+  box-shadow: 0 0 0 2px var(--ivy-peach);
+}
+
+.dot.peach { background: var(--ivy-peach); }
+.dot.lav { background: var(--ivy-lav); box-shadow: 0 0 0 2px var(--ivy-lav); }
+.dot.mint { background: var(--ivy-mint); box-shadow: 0 0 0 2px var(--ivy-mint); }
+
+.dot-event strong {
+  font-family: var(--ivy-display);
+  font-size: 1.05rem;
+  color: var(--ivy-ink);
 }
 
 .meta {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
+  font-size: 13px;
+  color: var(--ivy-muted);
+  margin-top: 2px;
 }
 
-.date {
-  font-weight: 700;
+.dot-event p {
+  font-size: 13px;
+  color: var(--ivy-muted);
+  margin: 6px 0 0;
+  line-height: 1.6;
 }
-
-.type {
-  display: inline-flex;
-  align-self: flex-start;
-  background: var(--brand-soft);
-  color: var(--brand);
-  padding: 4px 10px;
-  border-radius: 999px;
-  font-size: 12px;
-}
-
-.body h3 {
-  margin: 0 0 8px;
-}
-
-.body p {
-  margin: 0;
-  color: var(--muted);
-  line-height: 1.7;
-}
-
-.artist {
-  margin: 0 0 6px !important;
-  color: var(--text) !important;
-  font-size: 14px;
-}
-
-.links {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin: 10px 0;
-}
-
-.link-chip {
-  font-size: 12px;
-  padding: 6px 10px;
-  border-radius: 999px;
-  background: #efe9ff;
-  color: #5a4d8a;
-  text-decoration: none;
-}
-
-.link-chip:hover {
-  background: #e2d8ff;
-}
-
-.assets {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 12px;
-}
-
-.chip {
-  font-size: 12px;
-  padding: 6px 10px;
-  border-radius: 999px;
-  background: #eef2f0;
-}
-
-.chip.photo { background: #e7f2ec; color: #35624d; }
-.chip.video { background: #ececf8; color: #454c9a; }
-.chip.audio { background: #f8f0e7; color: #8a6435; }
-.chip.muted { background: #f1f1f1; color: #777; }
 
 .empty {
-  padding: 24px;
-  background: var(--panel);
-  border-radius: 16px;
-  color: var(--muted);
-}
-
-@media (max-width: 720px) {
-  .item {
-    grid-template-columns: 1fr;
-  }
+  text-align: center;
+  padding: 32px;
+  background: #fff;
+  border-radius: 24px;
+  color: var(--ivy-muted);
 }
 </style>

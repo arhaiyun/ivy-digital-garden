@@ -1,0 +1,72 @@
+/* Ivy · 糖果云朵 E 设计系统 */
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700&family=Nunito:wght@400;600;700&display=swap');
+
+:root {
+  --ivy-cream: #fffbf7;
+  --ivy-peach: #ffc8d4;
+  --ivy-mint: #b8f0e0;
+  --ivy-lav: #ddd0ff;
+  --ivy-lemon: #fff0b3;
+  --ivy-ink: #4a3f55;
+  --ivy-muted: #8a7f96;
+  --ivy-peach-deep: #e8879a;
+  --ivy-display: "Baloo 2", cursive;
+  --ivy-body: "Nunito", system-ui, sans-serif;
+}
+
+@keyframes ivy-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes ivy-drift {
+  to { transform: translate(30px, 20px) scale(1.05); }
+}
+
+@keyframes ivy-bounce-in {
+  0% { opacity: 0; transform: translateY(16px); }
+  70% { transform: translateY(-4px); }
+  100% { opacity: 1; transform: none; }
+}
+
+.ivy-clouds {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: -1;
+}
+
+.ivy-cloud {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(40px);
+  opacity: 0.55;
+  animation: ivy-drift 20s ease-in-out infinite alternate;
+}
+
+.ivy-cloud:nth-child(1) {
+  width: 280px;
+  height: 140px;
+  background: var(--ivy-peach);
+  top: -40px;
+  left: -60px;
+}
+
+.ivy-cloud:nth-child(2) {
+  width: 220px;
+  height: 120px;
+  background: var(--ivy-lav);
+  top: 20%;
+  right: -40px;
+  animation-delay: -5s;
+}
+
+.ivy-cloud:nth-child(3) {
+  width: 200px;
+  height: 100px;
+  background: var(--ivy-mint);
+  bottom: 10%;
+  left: 20%;
+  animation-delay: -10s;
+}

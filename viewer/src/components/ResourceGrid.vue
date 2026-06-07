@@ -1,106 +1,99 @@
 <script setup>
 const props = defineProps({
-  assets: { type: Array, required: true },
+  entries: { type: Array, required: true },
 })
 
-const KIND_LABEL = {
-  photo: '照片',
-  video: '视频',
-  audio: '音频',
+const TYPE_ICON = {
+  journal: '记',
+  milestone: '程',
+  health: '健',
+  family: '家',
+  creative: '创',
+  wish: '愿',
+  playlist: '歌',
+}
+
+function stickerLabel(entry) {
+  if (entry.assets?.length) return entry.assets[0].caption || entry.title
+  return entry.title
+}
+
+function stickerTone(entry) {
+  const map = {
+    playlist: 'lav',
+    journal: 'peach',
+    milestone: 'mint',
+    default: 'lemon',
+  }
+  return map[entry.type] || map.default
 }
 </script>
 
 <template>
-  <section class="grid-wrap">
-    <div v-if="assets.length === 0" class="empty">当前筛选下没有媒体资源。</div>
-    <div v-else class="grid">
-      <article v-for="asset in assets" :key="`${asset.entry.id}-${asset.path}`" class="card">
-        <div class="preview" :class="asset.kind">
-          <img v-if="asset.kind === 'photo' && asset.exists" :src="asset.url" :alt="asset.caption" />
-          <div v-else class="placeholder">
-            <span>{{ KIND_LABEL[asset.kind] || asset.kind }}</span>
-            <small v-if="!asset.exists">文件待导入</small>
-          </div>
-        </div>
-        <div class="info">
-          <h3>{{ asset.caption || asset.id }}</h3>
-          <p>
-            <a :href="asset.entry.link">{{ asset.entry.title }}</a>
-            · {{ asset.entry.date }}
-          </p>
-          <video v-if="asset.kind === 'video' && asset.exists" controls :src="asset.url"></video>
-          <audio v-if="asset.kind === 'audio' && asset.exists" controls :src="asset.url"></audio>
-        </div>
-      </article>
-    </div>
-  </section>
+  <div class="sticker-grid">
+    <a
+      v-for="entry in entries"
+      :key="entry.id"
+      class="sticker"
+      :class="stickerTone(entry)"
+      :href="entry.link"
+    >
+      <div class="icon">{{ TYPE_ICON[entry.type] || '✦' }}</div>
+      <small>{{ stickerLabel(entry) }}</small>
+    </a>
+  </div>
 </template>
 
 <style scoped>
-.grid {
+.sticker-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: 18px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
 }
 
-.card {
-  background: var(--panel);
-  border: 1px solid var(--line);
-  border-radius: 18px;
-  overflow: hidden;
-  box-shadow: var(--shadow);
+.sticker {
+  background: #fff;
+  border-radius: 20px;
+  padding: 18px 14px;
+  text-align: center;
+  border: 2px dashed var(--ivy-mint);
+  transition: transform 0.2s;
+  text-decoration: none;
+  color: inherit;
 }
 
-.preview {
-  aspect-ratio: 4 / 3;
-  background: #edf3f0;
+.sticker:hover {
+  transform: rotate(3deg);
+}
+
+.sticker.peach { border-color: var(--ivy-peach); }
+.sticker.lav { border-color: var(--ivy-lav); }
+.sticker.mint { border-color: var(--ivy-mint); }
+.sticker.lemon { border-color: var(--ivy-lemon); }
+
+.icon {
+  width: 48px;
+  height: 48px;
+  margin: 0 auto 10px;
+  border-radius: 14px;
   display: grid;
   place-items: center;
+  font-family: var(--ivy-display);
+  font-size: 1.2rem;
+  color: #fff;
+  background: linear-gradient(135deg, var(--ivy-peach), var(--ivy-lav));
 }
 
-.preview img,
-.preview video,
-.info video,
-.info audio {
-  width: 100%;
+.sticker small {
+  font-size: 11px;
+  color: var(--ivy-muted);
   display: block;
+  line-height: 1.4;
 }
 
-.preview img {
-  height: 100%;
-  object-fit: cover;
-}
-
-.placeholder {
-  text-align: center;
-  color: var(--muted);
-}
-
-.placeholder span {
-  display: block;
-  font-size: 18px;
-  font-weight: 700;
-}
-
-.info {
-  padding: 14px 16px 16px;
-}
-
-.info h3 {
-  margin: 0 0 6px;
-  font-size: 16px;
-}
-
-.info p {
-  margin: 0 0 10px;
-  color: var(--muted);
-  font-size: 13px;
-}
-
-.empty {
-  padding: 24px;
-  background: var(--panel);
-  border-radius: 16px;
-  color: var(--muted);
+@media (max-width: 600px) {
+  .sticker-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 </style>

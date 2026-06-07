@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ivy UI Demo 选择器</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Instrument+Serif&display=swap" rel="stylesheet" />
+  <style>
+    :root { --bg: #fff8fa; --card: #fff; --text: #4a3540; --muted: #9a8088; --accent: #e8879a; --line: rgba(232,135,154,.2); }
+    * { box-sizing: border-box; margin: 0; }
+    body {
+      font-family: "DM Sans", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      padding: 48px 24px 80px;
+    }
+    h1 {
+      font-family: "Instrument Serif", serif;
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 400;
+      margin-bottom: 8px;
+      color: #5c3d4a;
+    }
+    .sub { color: var(--muted); margin-bottom: 12px; max-width: 620px; line-height: 1.7; }
+    .hint { font-size: 13px; color: var(--accent); margin-bottom: 36px; }
+    h3.section {
+      font-size: 12px; letter-spacing: .14em; text-transform: uppercase;
+      color: var(--accent); margin: 32px 0 16px; padding-bottom: 8px;
+      border-bottom: 1px solid var(--line);
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 16px;
+      max-width: 1100px;
+    }
+    a.card {
+      display: block;
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 24px;
+      text-decoration: none;
+      color: inherit;
+      transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+      box-shadow: 0 8px 24px rgba(232,135,154,.06);
+    }
+    a.card:hover { transform: translateY(-4px); border-color: var(--accent); box-shadow: 0 16px 40px rgba(232,135,154,.12); }
+    a.card.girl { border-color: rgba(232,135,154,.35); }
+    .tag { font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); }
+    .tag.rec { background: #ffe8f0; color: #c45d75; padding: 3px 8px; border-radius: 6px; margin-left: 8px; font-size: 10px; }
+    h2 { font-family: "Instrument Serif", serif; font-size: 1.6rem; margin: 10px 0; font-weight: 400; }
+    p { color: var(--muted); line-height: 1.6; font-size: 13px; }
+    .swatch { display: flex; gap: 6px; margin-top: 14px; }
+    .swatch span { width: 24px; height: 8px; border-radius: 99px; }
+  </style>
+</head>
+<body>
+  <h1>为 Ivy 小公主选 UI</h1>
+  <p class="sub">共 7 套可交互 Demo。请先体验「精美可爱」系列（D–G），也可对比中性风格（A–C）。选定后回复编号，我再重构整个项目。</p>
+  <p class="hint">每套含：首页 · 时间轴 · 歌单 · 资源墙 — 确认前不会改现有站点</p>
+
+  <h3 class="section">E 糖果云朵 · 精致进阶（基于你的偏好）</h3>
+  <div class="grid">
+    <a class="card girl" href="demo-e2-silk.html" target="_blank">
+      <div><span class="tag">E2</span><span class="tag rec">精致</span></div>
+      <h2>绢纱云朵</h2>
+      <p>低饱和 pastel · 大留白 · Fraunces 衬线 · 克制阴影</p>
+      <div class="swatch"><span style="background:#fceef2"></span><span style="background:#edf8f4"></span><span style="background:#f3effa"></span></div>
+    </a>
+    <a class="card girl" href="demo-e3-glass.html" target="_blank">
+      <div><span class="tag">E3</span><span class="tag rec">精致</span></div>
+      <h2>琉璃云朵</h2>
+      <p>磨砂玻璃 · 色彩光晕 · Playfair 标题 · 轻盈高级</p>
+      <div class="swatch"><span style="background:#fff5f8"></span><span style="background:#e895a8"></span><span style="background:#a898c8"></span></div>
+    </a>
+    <a class="card girl" href="demo-e4-mousse.html" target="_blank">
+      <div><span class="tag">E4</span><span class="tag rec">精致</span></div>
+      <h2>蜜桃慕斯</h2>
+      <p>暖桃玫瑰金 · 甜品店排版 · 角饰边框 · 最「贵气」</p>
+      <div class="swatch"><span style="background:#fff9f5"></span><span style="background:#f5c4b8"></span><span style="background:#c9a08a"></span></div>
+    </a>
+    <a class="card girl" href="demo-e-candy.html" target="_blank">
+      <div class="tag">E 初版</div>
+      <h2>糖果云朵</h2>
+      <p>活泼原始版 · 作对比参考</p>
+      <div class="swatch"><span style="background:#ffc8d4"></span><span style="background:#b8f0e0"></span><span style="background:#ddd0ff"></span></div>
+    </a>
+  </div>
+
+  <h3 class="section">推荐 · 女孩子精美可爱</h3>
+  <div class="grid">
+    <a class="card girl" href="demo-d-sakura.html" target="_blank">
+      <div><span class="tag">Demo D</span><span class="tag rec">推荐</span></div>
+      <h2>樱花绘本</h2>
+      <p>粉色童话书 · 飘落花瓣 · 圆润字体 · 绘本封面感</p>
+      <div class="swatch"><span style="background:#ffe8f0"></span><span style="background:#f2a7b8"></span><span style="background:#e8879a"></span></div>
+    </a>
+    <a class="card girl" href="demo-f-lace.html" target="_blank">
+      <div><span class="tag">Demo F</span></div>
+      <h2>蕾丝梦境</h2>
+      <p>淡紫腮红 · 蕾丝画框 · 公主日记 · 精致优雅</p>
+      <div class="swatch"><span style="background:#f5d5e0"></span><span style="background:#c4b5e0"></span><span style="background:#faf7fc"></span></div>
+    </a>
+    <a class="card girl" href="demo-g-starlight.html" target="_blank">
+      <div><span class="tag">Demo G</span></div>
+      <h2>星月童话</h2>
+      <p>夜空星辰 · 月亮晚安感 · 粉金配色 · 梦幻高级</p>
+      <div class="swatch"><span style="background:#1a1528"></span><span style="background:#f0b4c8"></span><span style="background:#ffeaa8"></span></div>
+    </a>
+  </div>
+
+  <h3 class="section">备选 · 中性 / 其他气质</h3>
+  <div class="grid">
+    <a class="card" href="demo-a-editorial.html" target="_blank">
+      <div class="tag">Demo A</div>
+      <h2>晨光杂志</h2>
+      <p>Editorial 家庭杂志 · 衬线 · 偏成熟叙事</p>
+      <div class="swatch"><span style="background:#f7f3eb"></span><span style="background:#5f7f76"></span><span style="background:#c4a882"></span></div>
+    </a>
+    <a class="card" href="demo-b-garden.html" target="_blank">
+      <div class="tag">Demo B</div>
+      <h2>苔藓花园</h2>
+      <p>自然绿色 · 玻璃拟态 · 偏中性清新</p>
+      <div class="swatch"><span style="background:#e8f2ec"></span><span style="background:#3d6b5a"></span><span style="background:#f0d9b5"></span></div>
+    </a>
+    <a class="card" href="demo-c-archive.html" target="_blank">
+      <div class="tag">Demo C</div>
+      <h2>胶片档案室</h2>
+      <p>暗色影院 · 偏酷 · 高级感但不够「可爱」</p>
+      <div class="swatch"><span style="background:#1a1814"></span><span style="background:#e8c49a"></span><span style="background:#6b8f71"></span></div>
+    </a>
+  </div>
+</body>
+</html>

@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Demo C · 胶片档案室 · Ivy</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@500;600;700&family=Newsreader:opsz,wght@6..72,400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #121110;
+      --panel: #1a1814;
+      --ink: #f5f0e6;
+      --muted: #9a9288;
+      --amber: #e8c49a;
+      --fern: #6b8f71;
+      --display: "Syne", sans-serif;
+      --body: "Newsreader", Georgia, serif;
+    }
+    * { box-sizing: border-box; margin: 0; }
+    body {
+      font-family: var(--body); background: var(--bg); color: var(--ink);
+      min-height: 100vh; overflow-x: hidden;
+    }
+    body::after {
+      content: ""; position: fixed; inset: 0; pointer-events: none; opacity: .12;
+      background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,.3) 2px, rgba(0,0,0,.3) 4px);
+    }
+    .layout { display: grid; grid-template-columns: 240px 1fr; min-height: 100vh; }
+    aside {
+      background: var(--panel); border-right: 1px solid #2a2620;
+      padding: 32px 20px; position: sticky; top: 0; height: 100vh;
+    }
+    .logo { font-family: var(--display); font-size: 1.1rem; letter-spacing: .06em; color: var(--amber); margin-bottom: 40px; }
+    .side-nav button {
+      display: block; width: 100%; text-align: left; border: none; background: transparent;
+      color: var(--muted); font: 500 14px var(--display); padding: 12px 14px;
+      border-radius: 8px; cursor: pointer; margin-bottom: 4px; transition: .2s;
+    }
+    .side-nav button.active, .side-nav button:hover { background: #252219; color: var(--ink); }
+    main { padding: 36px 40px 80px; }
+    .scene { display: none; animation: fade .4s ease; }
+    .scene.active { display: block; }
+    @keyframes fade { from { opacity:0; } to { opacity:1; } }
+    .title-row { display: flex; justify-content: space-between; align-items: end; margin-bottom: 32px; flex-wrap: wrap; gap: 16px; }
+    .title-row h1 { font-family: var(--display); font-size: clamp(2rem,5vw,3rem); font-weight: 600; }
+    .title-row p { color: var(--muted); max-width: 40ch; line-height: 1.7; }
+    .film-strip {
+      display: flex; gap: 16px; overflow-x: auto; padding-bottom: 16px;
+      scroll-snap-type: x mandatory; margin-bottom: 36px;
+    }
+    .frame {
+      flex: 0 0 220px; scroll-snap-align: start;
+      background: #0d0c0a; border: 2px solid #3a342c; border-radius: 4px;
+      padding: 10px 10px 28px; position: relative; cursor: pointer;
+      transition: border-color .25s, transform .25s;
+    }
+    .frame:hover { border-color: var(--amber); transform: translateY(-4px); }
+    .frame-img { height: 120px; background: linear-gradient(180deg,#3a342c,#1f1c18); margin-bottom: 10px; }
+    .frame::after {
+      content: attr(data-date); position: absolute; bottom: 8px; left: 10px;
+      font-family: var(--display); font-size: 11px; color: var(--amber); letter-spacing: .08em;
+    }
+    .metrics { display: grid; grid-template-columns: repeat(4,1fr); gap: 12px; margin-bottom: 36px; }
+    .metric {
+      background: var(--panel); border: 1px solid #2a2620; padding: 20px;
+      border-top: 2px solid var(--fern);
+    }
+    .metric span { font-family: var(--display); font-size: 11px; color: var(--muted); letter-spacing: .1em; }
+    .metric b { display: block; font-family: var(--display); font-size: 2rem; margin-top: 8px; color: var(--amber); }
+    .vault { display: grid; grid-template-columns: repeat(auto-fill,minmax(200px,1fr)); gap: 14px; }
+    .vault-item {
+      background: var(--panel); border: 1px solid #2a2620; aspect-ratio: .85;
+      display: flex; flex-direction: column; justify-content: end; padding: 16px;
+      position: relative; overflow: hidden; cursor: pointer;
+    }
+    .vault-item::before {
+      content: ""; position: absolute; inset: 0;
+      background: radial-gradient(circle at 30% 20%, rgba(232,196,154,.15), transparent 55%);
+    }
+    .vault-item strong { font-family: var(--display); font-size: 14px; position: relative; }
+    .vault-item small { color: var(--muted); font-size: 12px; position: relative; margin-top: 4px; }
+    .player {
+      background: #0d0c0a; border: 1px solid #3a342c; border-radius: 12px;
+      padding: 28px; display: grid; grid-template-columns: 100px 1fr; gap: 24px; align-items: center;
+    }
+    .player-art {
+      width: 100px; height: 100px; border-radius: 50%;
+      background: repeating-conic-gradient(#2a2620 0 10deg, #1a1814 10deg 20deg);
+      border: 2px solid var(--amber);
+    }
+    .wave { display: flex; gap: 3px; align-items: end; height: 40px; margin-top: 16px; }
+    .wave i { display: block; width: 4px; background: var(--fern); border-radius: 2px; animation: wave 1s ease-in-out infinite; }
+    .wave i:nth-child(2){animation-delay:.1s;height:60%}
+    .wave i:nth-child(3){animation-delay:.2s;height:90%}
+    .wave i:nth-child(4){animation-delay:.3s;height:45%}
+    .wave i:nth-child(5){animation-delay:.4s;height:75%}
+    .wave i:nth-child(6){animation-delay:.5s;height:55%}
+    @keyframes wave { 0%,100%{height:30%} 50%{height:100%} }
+    .back { position: fixed; bottom: 20px; right: 20px; background: var(--amber); color: #121110; padding: 12px 18px; text-decoration: none; font-family: var(--display); font-size: 12px; font-weight: 600; }
+    @media (max-width: 800px) {
+      .layout { grid-template-columns: 1fr; }
+      aside { height: auto; position: static; }
+      .metrics { grid-template-columns: repeat(2,1fr); }
+    }
+  </style>
+</head>
+<body>
+  <div class="layout">
+    <aside>
+      <div class="logo">IVY ARCHIVE</div>
+      <nav class="side-nav">
+        <button class="active" data-scene="dashboard">档案总览</button>
+        <button data-scene="film">胶片时间轴</button>
+        <button data-scene="songs">声音库</button>
+        <button data-scene="vault">展柜</button>
+      </nav>
+      <p style="margin-top:40px;font-size:13px;color:var(--muted);line-height:1.6">Demo C · 暗色影院质感<br>适合沉浸式浏览</p>
+    </aside>
+    <main>
+      <section class="scene active" id="dashboard">
+        <div class="title-row">
+          <div><h1>Ivy 档案室</h1><p style="margin-top:10px">像走进私人影院，翻阅她生命最初的日子。</p></div>
+          <span style="font-family:var(--display);color:var(--amber)">2026.03.05 —</span>
+        </div>
+        <div class="metrics">
+          <div class="metric"><span>MEMORY</span><b>12</b></div>
+          <div class="metric"><span>PHOTO</span><b>48</b></div>
+          <div class="metric"><span>AUDIO</span><b>6</b></div>
+          <div class="metric"><span>DAY</span><b>91</b></div>
+        </div>
+        <div class="film-strip">
+          <div class="frame" data-date="03.05"><div class="frame-img"></div><div style="font-size:13px">出生</div></div>
+          <div class="frame" data-date="03.15"><div class="frame-img"></div><div style="font-size:13px">小星星</div></div>
+          <div class="frame" data-date="06.04"><div class="frame-img"></div><div style="font-size:13px">花园启程</div></div>
+        </div>
+      </section>
+
+      <section class="scene" id="film">
+        <div class="title-row"><h1>胶片时间轴</h1></div>
+        <div class="film-strip" style="flex-direction:column;overflow:visible">
+          <div class="frame" style="flex:1;max-width:100%" data-date="2026-06-04"><div class="frame-img" style="height:80px"></div><div>花园启程 — 日记</div></div>
+          <div class="frame" style="flex:1;max-width:100%" data-date="2026-03-15"><div class="frame-img" style="height:80px"></div><div>小星星 — 歌单</div></div>
+        </div>
+      </section>
+
+      <section class="scene" id="songs">
+        <div class="title-row"><h1>声音库</h1></div>
+        <div class="player">
+          <div class="player-art"></div>
+          <div>
+            <h2 style="font-family:var(--display);font-size:1.4rem">小星星</h2>
+            <p style="color:var(--muted);margin-top:6px">传统儿歌 · 0月龄 · 睡前</p>
+            <div class="wave"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="scene" id="vault">
+        <div class="title-row"><h1>展柜</h1></div>
+        <div class="vault">
+          <div class="vault-item"><strong>第一次笑</strong><small>照片</small></div>
+          <div class="vault-item"><strong>洗澡</strong><small>视频</small></div>
+          <div class="vault-item"><strong>爸爸哼唱</strong><small>音频</small></div>
+          <div class="vault-item"><strong>花园启程</strong><small>日记</small></div>
+        </div>
+      </section>
+    </main>
+  </div>
+  <a class="back" href="index.html">← 选择</a>
+  <script>
+    document.querySelectorAll('[data-scene]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('[data-scene]').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.scene').forEach(s => s.classList.remove('active'));
+        btn.classList.add('active');
+        document.getElementById(btn.dataset.scene).classList.add('active');
+      });
+    });
+  </script>
+</body>
+</html>

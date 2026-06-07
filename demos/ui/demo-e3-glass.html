@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>E3 · 糖果云朵·琉璃 · Ivy</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #f8f6fc;
+      --glass: rgba(255,255,255,.72);
+      --ink: #2e2838;
+      --muted: #7a7288;
+      --pink: #e895a8;
+      --pink-glow: rgba(232,149,168,.25);
+      --sage: #8ec9b8;
+      --lilac: #a898c8;
+      --serif: "Playfair Display", serif;
+      --sans: "DM Sans", sans-serif;
+    }
+    * { box-sizing: border-box; margin: 0; }
+    body {
+      font-family: var(--sans); color: var(--ink); min-height: 100vh;
+      background: linear-gradient(160deg, #faf8ff 0%, #fff5f8 40%, #f5faf8 100%);
+    }
+    .orb { position: fixed; border-radius: 50%; filter: blur(80px); opacity: .35; pointer-events: none; }
+    .orb.a { width: 360px; height: 360px; background: var(--pink); top: -120px; right: -80px; }
+    .orb.b { width: 280px; height: 280px; background: var(--lilac); bottom: -60px; left: -40px; }
+    .orb.c { width: 200px; height: 200px; background: var(--sage); top: 40%; left: 30%; opacity: .2; }
+    .shell { max-width: 900px; margin: 0 auto; padding: 32px 20px 90px; position: relative; z-index: 1; }
+    .glass-bar {
+      display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;
+      background: var(--glass); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255,255,255,.9); border-radius: 20px; padding: 16px 22px;
+      box-shadow: 0 8px 32px rgba(46,40,56,.06); margin-bottom: 28px;
+    }
+    .brand { font-family: var(--serif); font-size: 1.35rem; font-weight: 500; }
+    .brand span { color: var(--pink); font-style: italic; }
+    .seg { display: flex; gap: 2px; background: rgba(255,255,255,.5); padding: 3px; border-radius: 12px; }
+    .seg button {
+      border: none; background: transparent; font: 500 12px var(--sans);
+      color: var(--muted); padding: 8px 14px; border-radius: 9px; cursor: pointer; transition: .2s;
+    }
+    .seg button.active { background: #fff; color: var(--ink); box-shadow: 0 2px 8px rgba(0,0,0,.06); }
+    .scene { display: none; animation: glass-in .4s ease; }
+    .scene.active { display: block; }
+    @keyframes glass-in { from { opacity:0; transform:scale(.99); } to { opacity:1; transform:none; } }
+    .panel {
+      background: var(--glass); backdrop-filter: blur(24px); border: 1px solid rgba(255,255,255,.85);
+      border-radius: 24px; padding: 32px; margin-bottom: 16px;
+      box-shadow: 0 16px 48px rgba(46,40,56,.05);
+    }
+    .panel h2 { font-family: var(--serif); font-size: clamp(1.6rem, 4vw, 2.2rem); font-weight: 500; margin-bottom: 8px; }
+    .panel p { color: var(--muted); font-size: 14px; line-height: 1.75; }
+    .ring-row { display: flex; gap: 24px; align-items: center; flex-wrap: wrap; margin-top: 24px; }
+    .ring {
+      width: 100px; height: 100px; border-radius: 50%; position: relative;
+      background: conic-gradient(from 0deg, var(--pink), var(--lilac), var(--sage), var(--pink));
+      display: grid; place-items: center;
+    }
+    .ring::before {
+      content: ""; position: absolute; inset: 4px; border-radius: 50%; background: rgba(255,255,255,.95);
+    }
+    .ring div { position: relative; text-align: center; }
+    .ring b { font-family: var(--serif); font-size: 1.6rem; display: block; color: var(--pink); }
+    .ring span { font-size: 10px; color: var(--muted); letter-spacing: .08em; }
+    .chips { display: flex; gap: 10px; flex-wrap: wrap; }
+    .chip {
+      padding: 14px 20px; border-radius: 14px; background: rgba(255,255,255,.6);
+      border: 1px solid rgba(255,255,255,.9); min-width: 100px;
+    }
+    .chip b { font-family: var(--serif); font-size: 1.3rem; color: var(--lilac); display: block; }
+    .chip span { font-size: 11px; color: var(--muted); }
+    .flow { position: relative; padding-left: 24px; }
+    .flow::before {
+      content: ""; position: absolute; left: 7px; top: 8px; bottom: 8px; width: 2px;
+      background: linear-gradient(180deg, var(--pink), var(--lilac));
+      opacity: .4;
+    }
+    .flow-item {
+      position: relative; padding: 16px 18px; margin-bottom: 10px;
+      background: rgba(255,255,255,.55); border-radius: 14px; border: 1px solid rgba(255,255,255,.8);
+    }
+    .flow-item::before {
+      content: ""; position: absolute; left: -21px; top: 22px; width: 10px; height: 10px;
+      border-radius: 50%; background: var(--pink); border: 2px solid #fff;
+      box-shadow: 0 0 0 3px var(--pink-glow);
+    }
+    .flow-item strong { font-weight: 600; font-size: 14px; }
+    .flow-item p { font-size: 12px; color: var(--muted); margin-top: 4px; }
+    .track {
+      display: flex; align-items: center; gap: 16px; padding: 14px 16px;
+      background: rgba(255,255,255,.6); border-radius: 16px; margin-bottom: 8px;
+      border: 1px solid rgba(255,255,255,.85); cursor: pointer; transition: .2s;
+    }
+    .track:hover { background: rgba(255,255,255,.9); box-shadow: 0 8px 24px var(--pink-glow); }
+    .play {
+      width: 40px; height: 40px; border-radius: 50%; flex-shrink: 0;
+      background: linear-gradient(135deg, var(--pink), #f0b0c0);
+      display: grid; place-items: center; color: #fff; font-size: 12px;
+    }
+    .mosaic { display: grid; grid-template-columns: repeat(12,1fr); gap: 10px; }
+    .m { border-radius: 14px; background: rgba(255,255,255,.5); border: 1px solid rgba(255,255,255,.8); overflow: hidden; }
+    .m .ph { background: linear-gradient(135deg, rgba(232,149,168,.2), rgba(168,152,200,.15)); min-height: 80px; }
+    .m figcaption { padding: 10px 12px; font-size: 11px; font-weight: 500; }
+    .m.w8 { grid-column: span 8; }
+    .m.w4 { grid-column: span 4; }
+    .m.w6 { grid-column: span 6; }
+    .back { color: var(--muted); font-size: 13px; text-decoration: none; display: inline-block; margin-top: 28px; }
+    @media (max-width: 640px) {
+      .m.w8,.m.w4,.m.w6 { grid-column: span 12; }
+    }
+  </style>
+</head>
+<body>
+  <div class="orb a"></div><div class="orb b"></div><div class="orb c"></div>
+  <div class="shell">
+    <div class="glass-bar">
+      <div class="brand">Ivy <span>琉璃</span></div>
+      <div class="seg">
+        <button class="active" data-v="home">首页</button>
+        <button data-v="timeline">轨迹</button>
+        <button data-v="playlist">歌单</button>
+        <button data-v="media">展墙</button>
+      </div>
+    </div>
+
+    <section class="scene active" id="home">
+      <div class="panel">
+        <h2>糖果色的记忆琉璃</h2>
+        <p>E3 · 磨砂玻璃 · 色彩作光晕 · 更轻盈精致</p>
+        <div class="ring-row">
+          <div class="ring"><div><b>91</b><span>DAYS</span></div></div>
+          <div class="chips">
+            <div class="chip"><b>48</b><span>照片</span></div>
+            <div class="chip"><b>6</b><span>歌谣</span></div>
+            <div class="chip"><b>12</b><span>故事</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="scene" id="timeline">
+      <div class="panel"><h2>成长轨迹</h2></div>
+      <div class="flow">
+        <div class="flow-item"><strong>花园启程</strong><p>2026.06.04 · 日记</p></div>
+        <div class="flow-item"><strong>小星星</strong><p>2026.03.15 · 歌单 · 睡前</p></div>
+        <div class="flow-item"><strong>Ivy 出生</strong><p>2026.03.05 · 上海</p></div>
+      </div>
+    </section>
+
+    <section class="scene" id="playlist">
+      <div class="panel"><h2>伴眠歌谣</h2></div>
+      <div class="track"><div class="play">▶</div><div><strong>小星星</strong><div style="font-size:12px;color:var(--muted);margin-top:2px">0月龄 · 网易云</div></div></div>
+      <div class="track"><div class="play">▶</div><div><strong>世上只有妈妈好</strong><div style="font-size:12px;color:var(--muted);margin-top:2px">外婆录音</div></div></div>
+    </section>
+
+    <section class="scene" id="media">
+      <div class="mosaic">
+        <figure class="m w8"><div class="ph" style="min-height:140px"></div><figcaption>第一次笑</figcaption></figure>
+        <figure class="m w4"><div class="ph"></div><figcaption>洗澡</figcaption></figure>
+        <figure class="m w6"><div class="ph"></div><figcaption>小星星</figcaption></figure>
+        <figure class="m w6"><div class="ph"></div><figcaption>花园启程</figcaption></figure>
+      </div>
+    </section>
+
+    <a class="back" href="index.html">← 返回选择</a>
+  </div>
+  <script>
+    document.querySelectorAll('[data-v]').forEach(b => b.addEventListener('click', () => {
+      document.querySelectorAll('[data-v]').forEach(x => x.classList.remove('active'));
+      document.querySelectorAll('.scene').forEach(x => x.classList.remove('active'));
+      b.classList.add('active');
+      document.getElementById(b.dataset.v).classList.add('active');
+    }));
+  </script>
+</body>
+</html>

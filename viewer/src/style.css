@@ -1,14 +1,4 @@
-:root {
-  --bg: #f4f7f5;
-  --panel: #ffffff;
-  --text: #1f2a28;
-  --muted: #6d7b76;
-  --brand: #5f7f76;
-  --brand-soft: #d9e8e2;
-  --accent: #c4a882;
-  --line: #e4ece8;
-  --shadow: 0 12px 40px rgba(47, 79, 70, 0.08);
-}
+@import '../../shared/candy-cloud.css';
 
 * {
   box-sizing: border-box;
@@ -16,25 +6,22 @@
 
 body {
   margin: 0;
-  font-family: 'Noto Sans SC', system-ui, sans-serif;
-  color: var(--text);
-  background:
-    radial-gradient(circle at top left, rgba(95, 127, 118, 0.12), transparent 28%),
-    linear-gradient(180deg, #f8fbf9 0%, var(--bg) 100%);
+  font-family: var(--ivy-body);
+  background: var(--ivy-cream);
+  color: var(--ivy-ink);
   min-height: 100vh;
 }
 
-button,
-input,
-select {
-  font: inherit;
-}
-
 a {
-  color: var(--brand);
+  color: var(--ivy-peach-deep);
   text-decoration: none;
 }
 
 a:hover {
   text-decoration: underline;
+}
+
+button,
+select {
+  font-family: inherit;
 }

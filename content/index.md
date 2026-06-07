@@ -3,8 +3,8 @@ layout: home
 
 hero:
   name: Ivy
-  text: 的数字花园
-  tagline: 成长日记 · 里程碑 · 家族记忆 — 仅供家人
+  text: 糖果云朵
+  tagline: 软萌 pastel · 小公主的成长记录 — 仅供家人
 
 features:
   - title: 成长日记
@@ -20,7 +20,7 @@ features:
     details: 伴她长大的歌，一首一篇
     link: /playlist/
   - title: 资源总览
-    details: 时间轴、媒体墙与统计仪表盘
+    details: 糖果云朵 · 时间轴、歌单与贴纸墙
     link: /viewer/
   - title: 更多
     details: 家族故事、作品与愿望清单

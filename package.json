@@ -2,7 +2,7 @@
   "name": "ivy-digital-garden",
   "private": true,
   "version": "0.1.0",
-  "description": "Ivy 的数字花园 — 成长档案与家人站点",
+  "description": "Ivy 糖果云朵 — 成长档案与家人站点",
   "type": "module",
   "scripts": {
     "dev": "vitepress dev --host 127.0.0.1 --port 5173",

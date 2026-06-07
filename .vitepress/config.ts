@@ -3,8 +3,8 @@ import { buildSidebar } from './sidebar.mjs'
 
 export default defineConfig({
   lang: 'zh-CN',
-  title: "Ivy 的数字花园",
-  description: 'Ivy 的成长档案 — 家人私密',
+  title: "Ivy 糖果云朵",
+  description: 'Ivy 小公主的成长档案 — 家人私密',
   srcDir: 'content',
   outDir: '.vitepress/dist',
   cleanUrls: true,

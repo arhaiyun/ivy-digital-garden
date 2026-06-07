@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Demo E · 糖果云朵 · Ivy</title>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700&family=Nunito:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --cream: #fffbf7;
+      --peach: #ffc8d4;
+      --mint: #b8f0e0;
+      --lav: #ddd0ff;
+      --lemon: #fff0b3;
+      --ink: #4a3f55;
+      --muted: #8a7f96;
+      --display: "Baloo 2", cursive;
+      --body: "Nunito", sans-serif;
+    }
+    * { box-sizing: border-box; margin: 0; }
+    body {
+      font-family: var(--body); background: var(--cream); color: var(--ink);
+      min-height: 100vh;
+    }
+    .clouds {
+      position: fixed; inset: 0; pointer-events: none; overflow: hidden; z-index: 0;
+    }
+    .cloud {
+      position: absolute; border-radius: 50%; filter: blur(40px); opacity: .55;
+      animation: drift 20s ease-in-out infinite alternate;
+    }
+    .cloud:nth-child(1) { width: 280px; height: 140px; background: var(--peach); top: -40px; left: -60px; }
+    .cloud:nth-child(2) { width: 220px; height: 120px; background: var(--lav); top: 20%; right: -40px; animation-delay: -5s; }
+    .cloud:nth-child(3) { width: 200px; height: 100px; background: var(--mint); bottom: 10%; left: 20%; animation-delay: -10s; }
+    @keyframes drift { to { transform: translate(30px, 20px) scale(1.05); } }
+    .app { max-width: 920px; margin: 0 auto; padding: 24px 16px 100px; position: relative; z-index: 1; }
+    header { text-align: center; margin-bottom: 24px; }
+    header h1 {
+      font-family: var(--display); font-size: clamp(2.2rem, 7vw, 3.2rem);
+      background: linear-gradient(90deg, #e8879a, #b8a0e8, #7ecdb8);
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+    }
+    header p { color: var(--muted); margin-top: 8px; font-size: 15px; }
+    .nav-chips { display: flex; justify-content: center; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
+    .nav-chips button {
+      border: none; font-family: var(--display); font-size: 15px; cursor: pointer;
+      padding: 12px 20px; border-radius: 18px; transition: .25s;
+      background: #fff; color: var(--muted); box-shadow: 0 4px 0 rgba(0,0,0,.04);
+    }
+    .nav-chips button.active {
+      background: var(--peach); color: #fff; transform: translateY(-2px);
+      box-shadow: 0 6px 0 #f0a8b8;
+    }
+    .screen { display: none; animation: bounce-in .45s ease; }
+    .screen.active { display: block; }
+    @keyframes bounce-in { 0%{opacity:0;transform:translateY(16px)} 70%{transform:translateY(-4px)} 100%{opacity:1;transform:none} }
+    .hero-card {
+      background: #fff; border-radius: 32px; padding: 32px 24px; text-align: center;
+      box-shadow: 0 16px 40px rgba(232,135,154,.12);
+      border: 4px solid var(--lemon); margin-bottom: 18px;
+    }
+    .balloons { display: flex; justify-content: center; gap: 10px; margin-bottom: 16px; }
+    .balloon {
+      width: 44px; height: 54px; border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+      animation: float 3s ease-in-out infinite;
+    }
+    .balloon:nth-child(1) { background: var(--peach); animation-delay: 0s; }
+    .balloon:nth-child(2) { background: var(--lav); animation-delay: .5s; }
+    .balloon:nth-child(3) { background: var(--mint); animation-delay: 1s; }
+    @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
+    .hero-card h2 { font-family: var(--display); font-size: 1.6rem; color: var(--ink); }
+    .pill-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 12px; }
+    .pill {
+      border-radius: 24px; padding: 20px; color: var(--ink);
+      border: 3px solid #fff; box-shadow: 0 8px 24px rgba(0,0,0,.05);
+    }
+    .pill:nth-child(1) { background: var(--peach); }
+    .pill:nth-child(2) { background: var(--mint); }
+    .pill:nth-child(3) { background: var(--lav); }
+    .pill:nth-child(4) { background: var(--lemon); }
+    .pill b { font-family: var(--display); font-size: 2rem; display: block; }
+    .pill span { font-size: 13px; opacity: .75; }
+    .candy-list { display: grid; gap: 12px; }
+    .candy-item {
+      display: flex; gap: 14px; align-items: center;
+      background: #fff; border-radius: 24px; padding: 16px 18px;
+      border: 2px solid var(--peach); cursor: pointer;
+      transition: transform .2s, box-shadow .2s;
+    }
+    .candy-item:hover { transform: rotate(-1deg) scale(1.01); box-shadow: 0 12px 28px rgba(232,135,154,.15); }
+    .candy-icon {
+      width: 52px; height: 52px; border-radius: 16px;
+      background: linear-gradient(135deg, var(--lav), var(--peach));
+      display: grid; place-items: center; font-size: 22px;
+    }
+    .dot-line { display: flex; flex-direction: column; gap: 0; padding-left: 8px; }
+    .dot-event {
+      display: flex; gap: 14px; padding: 14px 0;
+    }
+    .dot {
+      width: 16px; height: 16px; border-radius: 50%; flex-shrink: 0; margin-top: 4px;
+      border: 3px solid #fff; box-shadow: 0 0 0 2px var(--peach);
+    }
+    .dot-line .dot-event:not(:last-child) { border-left: 3px dotted var(--peach); margin-left: 7px; padding-left: 20px; }
+    .sticker-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; }
+    .sticker {
+      background: #fff; border-radius: 20px; padding: 14px; text-align: center;
+      border: 2px dashed var(--mint); transition: transform .2s; cursor: pointer;
+    }
+    .sticker:hover { transform: rotate(3deg); }
+    .sticker .emoji { font-size: 2rem; margin-bottom: 8px; }
+    .sticker small { font-size: 11px; color: var(--muted); display: block; }
+    .back {
+      position: fixed; bottom: 20px; right: 20px; background: var(--ink); color: #fff;
+      padding: 12px 20px; border-radius: 20px; text-decoration: none; font-family: var(--display);
+    }
+  </style>
+</head>
+<body>
+  <div class="clouds"><div class="cloud"></div><div class="cloud"></div><div class="cloud"></div></div>
+  <div class="app">
+    <header>
+      <h1>Ivy 糖果云朵</h1>
+      <p>软萌 pastel · 像糖果一样甜的成长记录</p>
+      <div class="nav-chips">
+        <button class="active" data-s="home">首页</button>
+        <button data-s="timeline">时间轴</button>
+        <button data-s="playlist">歌单</button>
+        <button data-s="stickers">贴纸墙</button>
+      </div>
+    </header>
+
+    <section class="screen active" id="home">
+      <div class="hero-card">
+        <div class="balloons"><div class="balloon"></div><div class="balloon"></div><div class="balloon"></div></div>
+        <h2>Hi Ivy ~</h2>
+        <p style="margin-top:8px;color:var(--muted)">今天是你来到世界的第 <strong style="color:var(--ink)">91</strong> 天</p>
+      </div>
+      <div class="pill-grid">
+        <div class="pill"><b>48</b><span>张照片</span></div>
+        <div class="pill"><b>6</b><span>首歌</span></div>
+        <div class="pill"><b>12</b><span>条记忆</span></div>
+        <div class="pill"><b>3</b><span>个月啦</span></div>
+      </div>
+    </section>
+
+    <section class="screen" id="timeline">
+      <div class="dot-line">
+        <div class="dot-event"><div class="dot" style="background:var(--peach)"></div><div><strong>花园启程</strong><div style="font-size:13px;color:var(--muted)">2026.06.04</div></div></div>
+        <div class="dot-event"><div class="dot" style="background:var(--lav)"></div><div><strong>小星星入册</strong><div style="font-size:13px;color:var(--muted)">2026.03.15</div></div></div>
+        <div class="dot-event"><div class="dot" style="background:var(--mint)"></div><div><strong>Ivy 出生</strong><div style="font-size:13px;color:var(--muted)">2026.03.05 · 上海</div></div></div>
+      </div>
+    </section>
+
+    <section class="screen" id="playlist">
+      <div class="candy-list">
+        <div class="candy-item"><div class="candy-icon">♫</div><div><strong>小星星</strong><div style="font-size:13px;color:var(--muted)">睡前儿歌 · 网易云</div></div></div>
+        <div class="candy-item"><div class="candy-icon">♫</div><div><strong>世上只有妈妈好</strong><div style="font-size:13px;color:var(--muted)">外婆版录音</div></div></div>
+      </div>
+    </section>
+
+    <section class="screen" id="stickers">
+      <div class="sticker-grid">
+        <div class="sticker"><div class="emoji">📷</div><small>第一次笑</small></div>
+        <div class="sticker"><div class="emoji">🛁</div><small>洗澡</small></div>
+        <div class="sticker"><div class="emoji">⭐</div><small>小星星</small></div>
+        <div class="sticker"><div class="emoji">🌸</div><small>花园</small></div>
+        <div class="sticker"><div class="emoji">👶</div><small>出生</small></div>
+        <div class="sticker"><div class="emoji">🎵</div><small>哼唱</small></div>
+      </div>
+    </section>
+  </div>
+  <a class="back" href="index.html">← 选择</a>
+  <script>
+    document.querySelectorAll('[data-s]').forEach(b => b.addEventListener('click', () => {
+      document.querySelectorAll('[data-s]').forEach(x => x.classList.remove('active'));
+      document.querySelectorAll('.screen').forEach(x => x.classList.remove('active'));
+      b.classList.add('active');
+      document.getElementById(b.dataset.s).classList.add('active');
+    }));
+  </script>
+</body>
+</html>

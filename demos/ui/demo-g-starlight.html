@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Demo G · 星月童话 · Ivy</title>
+  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;500;600&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --night: #1a1528;
+      --night2: #2a2240;
+      --moon: #fff8f0;
+      --star: #ffeaa8;
+      --pink: #f0b4c8;
+      --soft: #c9b8e8;
+      --muted: #a89ec4;
+      --display: "Josefin Sans", sans-serif;
+      --serif: "Libre Baskerville", serif;
+    }
+    * { box-sizing: border-box; margin: 0; }
+    body {
+      font-family: var(--display); background: var(--night); color: var(--moon);
+      min-height: 100vh; overflow-x: hidden;
+    }
+    .sky { position: fixed; inset: 0; pointer-events: none; }
+    .star-dot {
+      position: absolute; width: 3px; height: 3px; background: var(--star);
+      border-radius: 50%; animation: twinkle 3s ease-in-out infinite;
+    }
+    @keyframes twinkle { 0%,100%{opacity:.3;transform:scale(1)} 50%{opacity:1;transform:scale(1.3)} }
+    .moon {
+      position: fixed; top: 40px; right: 8%; width: 72px; height: 72px;
+      border-radius: 50%; background: radial-gradient(circle at 35% 35%, #fff, #f5e6d0);
+      box-shadow: 0 0 60px rgba(255,234,168,.25); pointer-events: none;
+    }
+    .app { max-width: 900px; margin: 0 auto; padding: 100px 20px 80px; position: relative; z-index: 1; }
+    .intro { text-align: center; margin-bottom: 36px; }
+    .intro h1 {
+      font-family: var(--serif); font-size: clamp(2rem, 6vw, 3rem);
+      font-weight: 400; letter-spacing: .06em;
+    }
+    .intro h1 span { color: var(--pink); font-style: italic; }
+    .intro p { color: var(--muted); margin-top: 12px; font-size: 14px; letter-spacing: .12em; text-transform: uppercase; }
+    .orbit-nav {
+      display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; margin-bottom: 32px;
+    }
+    .orbit-nav button {
+      width: 72px; height: 72px; border-radius: 50%; border: 1px solid rgba(201,184,232,.4);
+      background: rgba(42,34,64,.6); color: var(--moon); font: 500 12px var(--display);
+      cursor: pointer; transition: .3s; backdrop-filter: blur(8px);
+    }
+    .orbit-nav button.active {
+      background: linear-gradient(135deg, var(--pink), var(--soft));
+      border-color: transparent; color: var(--night); box-shadow: 0 0 30px rgba(240,180,200,.4);
+      transform: scale(1.08);
+    }
+    .scene { display: none; animation: glow .5s ease; }
+    .scene.active { display: block; }
+    @keyframes glow { from { opacity:0; filter:blur(4px); } to { opacity:1; filter:none; } }
+    .glass {
+      background: rgba(42,34,64,.5); backdrop-filter: blur(16px);
+      border: 1px solid rgba(201,184,232,.25); border-radius: 24px;
+      padding: 28px; margin-bottom: 16px;
+    }
+    .glass h2 { font-family: var(--serif); font-size: 1.4rem; font-weight: 400; margin-bottom: 12px; }
+    .glass p { color: var(--muted); line-height: 1.8; font-size: 14px; }
+    .constellation { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; }
+    .age-ring {
+      width: 120px; height: 120px; border-radius: 50%;
+      border: 2px solid rgba(255,234,168,.4);
+      display: grid; place-items: center; text-align: center;
+      box-shadow: 0 0 40px rgba(255,234,168,.1);
+    }
+    .age-ring b { font-size: 2rem; color: var(--star); display: block; }
+    .age-ring span { font-size: 11px; color: var(--muted); }
+    .mini-stats { display: flex; gap: 20px; flex-wrap: wrap; }
+    .mini-stats div b { color: var(--pink); font-size: 1.4rem; display: block; }
+    .mini-stats div span { font-size: 11px; color: var(--muted); letter-spacing: .08em; }
+    .wish-list { display: grid; gap: 12px; }
+    .wish-item {
+      display: grid; grid-template-columns: 60px 1fr; gap: 14px; align-items: center;
+      padding: 14px; border-radius: 16px; background: rgba(26,21,40,.5);
+      border: 1px solid rgba(201,184,232,.15); cursor: pointer; transition: .25s;
+    }
+    .wish-item:hover { border-color: var(--pink); transform: translateX(4px); }
+    .wish-item .icon {
+      width: 48px; height: 48px; border-radius: 12px;
+      background: linear-gradient(135deg, rgba(240,180,200,.3), rgba(201,184,232,.2));
+      display: grid; place-items: center; font-size: 18px;
+    }
+    .song-glow {
+      text-align: center; padding: 32px 20px;
+      background: radial-gradient(ellipse at center, rgba(240,180,200,.15), transparent 70%);
+      border-radius: 24px; margin-bottom: 16px;
+    }
+    .song-glow h3 { font-family: var(--serif); font-size: 1.6rem; color: var(--pink); }
+    .song-glow p { color: var(--muted); font-size: 13px; margin-top: 8px; }
+    .wave-bars { display: flex; justify-content: center; gap: 4px; margin-top: 20px; height: 32px; align-items: end; }
+    .wave-bars i { display: block; width: 4px; background: var(--soft); border-radius: 2px; animation: bar 1.2s ease-in-out infinite; }
+    .wave-bars i:nth-child(1){height:40%;animation-delay:0s}
+    .wave-bars i:nth-child(2){height:70%;animation-delay:.15s}
+    .wave-bars i:nth-child(3){height:100%;animation-delay:.3s}
+    .wave-bars i:nth-child(4){height:60%;animation-delay:.45s}
+    .wave-bars i:nth-child(5){height:85%;animation-delay:.6s}
+    @keyframes bar { 0%,100%{transform:scaleY(.5)} 50%{transform:scaleY(1)} }
+    .star-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; }
+    .star-card {
+      aspect-ratio: 1; border-radius: 16px;
+      background: rgba(42,34,64,.6); border: 1px solid rgba(201,184,232,.2);
+      display: flex; flex-direction: column; justify-content: end; padding: 14px;
+      position: relative; overflow: hidden; cursor: pointer; transition: .25s;
+    }
+    .star-card::before {
+      content: "✦"; position: absolute; top: 12px; right: 12px; color: var(--star); opacity: .5; font-size: 14px;
+    }
+    .star-card:hover { border-color: var(--star); box-shadow: 0 0 24px rgba(255,234,168,.15); }
+    .star-card strong { font-size: 13px; }
+    .star-card small { font-size: 11px; color: var(--muted); margin-top: 4px; }
+    .back {
+      position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
+      color: var(--muted); text-decoration: none; font-size: 12px; letter-spacing: .1em;
+    }
+    .back:hover { color: var(--pink); }
+  </style>
+</head>
+<body>
+  <div class="sky" id="stars"></div>
+  <div class="moon"></div>
+  <div class="app">
+    <div class="intro">
+      <h1>Ivy <span>星月童话</span></h1>
+      <p>night garden for our little girl</p>
+    </div>
+    <div class="orbit-nav">
+      <button class="active" data-g="home">首页</button>
+      <button data-g="timeline">星轨</button>
+      <button data-g="playlist">夜曲</button>
+      <button data-g="gallery">星图</button>
+    </div>
+
+    <section class="scene active" id="home">
+      <div class="glass">
+        <div class="constellation">
+          <div class="age-ring"><b>91</b><span>天</span></div>
+          <div class="mini-stats">
+            <div><b>48</b><span>照片</span></div>
+            <div><b>6</b><span>歌谣</span></div>
+            <div><b>12</b><span>记忆</span></div>
+          </div>
+        </div>
+        <p style="margin-top:20px">在星月下，为你珍藏每一个入睡前的哼唱与微笑。</p>
+      </div>
+    </section>
+
+    <section class="scene" id="timeline">
+      <div class="wish-list">
+        <div class="wish-item"><div class="icon">✦</div><div><strong>花园启程</strong><div style="font-size:12px;color:var(--muted);margin-top:4px">2026.06.04</div></div></div>
+        <div class="wish-item"><div class="icon">♪</div><div><strong>小星星</strong><div style="font-size:12px;color:var(--muted);margin-top:4px">2026.03.15 · 睡前</div></div></div>
+        <div class="wish-item"><div class="icon">♡</div><div><strong>Ivy 出生</strong><div style="font-size:12px;color:var(--muted);margin-top:4px">2026.03.05 · 上海</div></div></div>
+      </div>
+    </section>
+
+    <section class="scene" id="playlist">
+      <div class="song-glow">
+        <h3>小星星</h3>
+        <p>传统儿歌 · 0月龄 · 睡前</p>
+        <div class="wave-bars"><i></i><i></i><i></i><i></i><i></i></div>
+      </div>
+      <div class="glass"><h2>世上只有妈妈好</h2><p>外婆唱给你听 · 2月龄</p></div>
+    </section>
+
+    <section class="scene" id="gallery">
+      <div class="star-grid">
+        <div class="star-card"><strong>第一次笑</strong><small>照片</small></div>
+        <div class="star-card"><strong>洗澡</strong><small>视频</small></div>
+        <div class="star-card"><strong>哼唱</strong><small>音频</small></div>
+        <div class="star-card"><strong>花园</strong><small>日记</small></div>
+      </div>
+    </section>
+  </div>
+  <a class="back" href="index.html">← 返回选择</a>
+  <script>
+    const sky = document.getElementById('stars');
+    for (let i = 0; i < 40; i++) {
+      const s = document.createElement('div');
+      s.className = 'star-dot';
+      s.style.left = Math.random() * 100 + '%';
+      s.style.top = Math.random() * 100 + '%';
+      s.style.animationDelay = Math.random() * 3 + 's';
+      sky.appendChild(s);
+    }
+    document.querySelectorAll('[data-g]').forEach(b => b.addEventListener('click', () => {
+      document.querySelectorAll('[data-g]').forEach(x => x.classList.remove('active'));
+      document.querySelectorAll('.scene').forEach(x => x.classList.remove('active'));
+      b.classList.add('active');
+      document.getElementById(b.dataset.g).classList.add('active');
+    }));
+  </script>
+</body>
+</html>

@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>E4 · 糖果云朵·蜜桃慕斯 · Ivy</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --cream: #fff9f5;
+      --peach: #f5c4b8;
+      --peach-deep: #e8a090;
+      --blush: #fde8e4;
+      --rose-gold: #c9a08a;
+      --ink: #4a3838;
+      --muted: #9a8484;
+      --serif: "Cormorant Garamond", serif;
+      --sans: "Outfit", sans-serif;
+    }
+    * { box-sizing: border-box; margin: 0; }
+    body {
+      font-family: var(--sans); font-weight: 300;
+      background: var(--cream); color: var(--ink); min-height: 100vh;
+    }
+    .top-line { height: 3px; background: linear-gradient(90deg, transparent, var(--peach), var(--rose-gold), var(--peach), transparent); }
+    .container { max-width: 860px; margin: 0 auto; padding: 48px 28px 100px; }
+    .header { text-align: center; margin-bottom: 48px; }
+    .header .eyebrow {
+      font-size: 11px; letter-spacing: .28em; text-transform: uppercase;
+      color: var(--rose-gold); margin-bottom: 16px;
+    }
+    .header h1 {
+      font-family: var(--serif); font-size: clamp(2.4rem, 6vw, 3.4rem);
+      font-weight: 500; line-height: 1.05;
+    }
+    .header h1 i { font-style: italic; color: var(--peach-deep); }
+    .header p { margin-top: 14px; color: var(--muted); font-size: 14px; letter-spacing: .02em; }
+    .nav-elegant {
+      display: flex; justify-content: center; gap: 32px; margin-top: 32px;
+      border-top: 1px solid rgba(201,160,138,.25); border-bottom: 1px solid rgba(201,160,138,.25);
+      padding: 14px 0;
+    }
+    .nav-elegant button {
+      border: none; background: none; font-family: var(--serif); font-size: 1.05rem;
+      color: var(--muted); cursor: pointer; padding: 4px 0; position: relative; transition: color .2s;
+    }
+    .nav-elegant button.active { color: var(--ink); }
+    .nav-elegant button.active::after {
+      content: ""; position: absolute; bottom: -15px; left: 0; right: 0; height: 2px; background: var(--peach-deep);
+    }
+    .page { display: none; animation: lift .45s ease; padding-top: 36px; }
+    .page.active { display: block; }
+    @keyframes lift { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:none; } }
+    .feature {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: stretch; margin-bottom: 28px;
+    }
+    .portrait-card {
+      background: linear-gradient(165deg, #fff, var(--blush));
+      border: 1px solid rgba(232,160,144,.2); padding: 40px 32px; text-align: center;
+      position: relative;
+    }
+    .portrait-card::before, .portrait-card::after {
+      content: ""; position: absolute; width: 24px; height: 24px;
+      border: 1px solid var(--rose-gold); opacity: .4;
+    }
+    .portrait-card::before { top: 12px; left: 12px; border-right: none; border-bottom: none; }
+    .portrait-card::after { bottom: 12px; right: 12px; border-left: none; border-top: none; }
+    .monogram {
+      width: 72px; height: 72px; margin: 0 auto 20px; border-radius: 50%;
+      border: 1px solid var(--rose-gold); display: grid; place-items: center;
+      font-family: var(--serif); font-size: 2rem; color: var(--peach-deep);
+    }
+    .portrait-card h2 { font-family: var(--serif); font-size: 1.6rem; font-weight: 500; }
+    .portrait-card p { margin-top: 10px; font-size: 13px; color: var(--muted); line-height: 1.8; }
+    .stat-col { display: flex; flex-direction: column; gap: 12px; }
+    .stat-line {
+      flex: 1; display: flex; justify-content: space-between; align-items: baseline;
+      padding: 20px 24px; background: #fff; border: 1px solid rgba(232,160,144,.15);
+    }
+    .stat-line span { font-size: 12px; color: var(--muted); letter-spacing: .08em; text-transform: uppercase; }
+    .stat-line b { font-family: var(--serif); font-size: 2rem; color: var(--peach-deep); font-weight: 500; }
+    .entry {
+      padding: 24px 0; border-bottom: 1px solid rgba(201,160,138,.15);
+      display: grid; grid-template-columns: 100px 1fr auto; gap: 20px; align-items: start;
+    }
+    .entry date { font-family: var(--serif); font-size: 1.1rem; color: var(--rose-gold); }
+    .entry h3 { font-family: var(--serif); font-size: 1.25rem; font-weight: 500; }
+    .entry p { font-size: 13px; color: var(--muted); margin-top: 4px; line-height: 1.7; }
+    .entry .type { font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: var(--peach-deep); padding-top: 4px; }
+    .album-list { display: grid; gap: 1px; background: rgba(201,160,138,.2); border: 1px solid rgba(201,160,138,.2); }
+    .album-row {
+      display: grid; grid-template-columns: 48px 1fr auto; gap: 16px; align-items: center;
+      padding: 18px 20px; background: #fff; cursor: pointer; transition: background .2s;
+    }
+    .album-row:hover { background: var(--blush); }
+    .album-num { font-family: var(--serif); font-size: 1.2rem; color: var(--rose-gold); }
+    .album-row strong { font-family: var(--serif); font-size: 1.1rem; font-weight: 500; }
+    .album-row small { display: block; color: var(--muted); font-size: 12px; margin-top: 2px; }
+    .album-row .action { font-size: 11px; color: var(--peach-deep); letter-spacing: .06em; }
+    .gallery-e { display: grid; grid-template-columns: repeat(2,1fr); gap: 16px; }
+    .g-card {
+      background: #fff; border: 1px solid rgba(232,160,144,.15); overflow: hidden;
+      transition: transform .25s ease;
+    }
+    .g-card:hover { transform: translateY(-2px); }
+    .g-card .img { height: 160px; background: linear-gradient(180deg, var(--blush), rgba(245,196,184,.3)); }
+    .g-card .cap { padding: 14px 16px; font-family: var(--serif); font-size: 1rem; }
+    .g-card .cap small { display: block; font-family: var(--sans); font-size: 11px; color: var(--muted); margin-top: 4px; }
+    .back { display: block; text-align: center; margin-top: 48px; color: var(--muted); font-size: 13px; text-decoration: none; }
+    .back:hover { color: var(--peach-deep); }
+    @media (max-width: 640px) {
+      .feature { grid-template-columns: 1fr; }
+      .entry { grid-template-columns: 1fr; }
+      .nav-elegant { gap: 16px; flex-wrap: wrap; }
+    }
+  </style>
+</head>
+<body>
+  <div class="top-line"></div>
+  <div class="container">
+    <header class="header">
+      <div class="eyebrow">Ivy · E4 Refine</div>
+      <h1>蜜桃<i>慕斯</i>云朵</h1>
+      <p>暖桃色调 · 玫瑰金点缀 · 甜品店级精致排版</p>
+      <nav class="nav-elegant">
+        <button class="active" data-p="home">扉页</button>
+        <button data-p="timeline">纪事</button>
+        <button data-p="playlist">歌谣</button>
+        <button data-p="gallery">画册</button>
+      </nav>
+    </header>
+
+    <section class="page active" id="home">
+      <div class="feature">
+        <div class="portrait-card">
+          <div class="monogram">I</div>
+          <h2>我们的 Ivy</h2>
+          <p>2026年3月5日 · 上海<br>今天第 91 天</p>
+        </div>
+        <div class="stat-col">
+          <div class="stat-line"><span>Photos</span><b>48</b></div>
+          <div class="stat-line"><span>Songs</span><b>6</b></div>
+          <div class="stat-line"><span>Stories</span><b>12</b></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="page" id="timeline">
+      <article class="entry"><date>06.04</date><div><h3>花园启程</h3><p>为 Ivy 种下第一棵数字树。</p></div><div class="type">Journal</div></article>
+      <article class="entry"><date>03.15</date><div><h3>小星星</h3><p>睡前哼唱，成为家的声音。</p></div><div class="type">Playlist</div></article>
+      <article class="entry"><date>03.05</date><div><h3>出生</h3><p>欢迎来到这个世界，小公主。</p></div><div class="type">Milestone</div></article>
+    </section>
+
+    <section class="page" id="playlist">
+      <div class="album-list">
+        <div class="album-row"><div class="album-num">01</div><div><strong>小星星</strong><small>传统儿歌 · 0月龄 · 睡前</small></div><div class="action">收听 →</div></div>
+        <div class="album-row"><div class="album-num">02</div><div><strong>世上只有妈妈好</strong><small>外婆哼唱 · 本地录音</small></div><div class="action">播放 →</div></div>
+      </div>
+    </section>
+
+    <section class="page" id="gallery">
+      <div class="gallery-e">
+        <div class="g-card"><div class="img"></div><div class="cap">第一次笑<small>照片</small></div></div>
+        <div class="g-card"><div class="img"></div><div class="cap">洗澡时光<small>视频</small></div></div>
+        <div class="g-card"><div class="img"></div><div class="cap">小星星<small>歌单</small></div></div>
+        <div class="g-card"><div class="img"></div><div class="cap">花园启程<small>日记</small></div></div>
+      </div>
+    </section>
+
+    <a class="back" href="index.html">← 返回选择</a>
+  </div>
+  <script>
+    document.querySelectorAll('[data-p]').forEach(b => b.addEventListener('click', () => {
+      document.querySelectorAll('[data-p]').forEach(x => x.classList.remove('active'));
+      document.querySelectorAll('.page').forEach(x => x.classList.remove('active'));
+      b.classList.add('active');
+      document.getElementById(b.dataset.p).classList.add('active');
+    }));
+  </script>
+</body>
+</html>

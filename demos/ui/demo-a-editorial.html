@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Demo A · 晨光杂志 · Ivy</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,700;1,500&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #f7f3eb;
+      --ink: #1e2421;
+      --muted: #6b726d;
+      --sage: #5f7f76;
+      --gold: #b8956c;
+      --line: rgba(30,36,33,.12);
+      --serif: "Cormorant Garamond", Georgia, serif;
+      --sans: "Source Sans 3", system-ui, sans-serif;
+    }
+    * { box-sizing: border-box; margin: 0; }
+    body { font-family: var(--sans); background: var(--bg); color: var(--ink); }
+    body::before {
+      content: "";
+      position: fixed; inset: 0; pointer-events: none; opacity: .35;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    }
+    .wrap { max-width: 1180px; margin: 0 auto; padding: 0 28px 80px; position: relative; }
+    nav {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 28px 0; border-bottom: 1px solid var(--line);
+      position: sticky; top: 0; background: rgba(247,243,235,.92); backdrop-filter: blur(8px); z-index: 10;
+    }
+    .logo { font-family: var(--serif); font-size: 1.6rem; letter-spacing: .02em; }
+    .nav-links { display: flex; gap: 8px; flex-wrap: wrap; }
+    .nav-links button {
+      border: none; background: transparent; font: inherit; cursor: pointer;
+      padding: 8px 14px; color: var(--muted); border-radius: 999px; transition: .2s;
+    }
+    .nav-links button.active, .nav-links button:hover { color: var(--ink); background: #fff; }
+    .hero {
+      display: grid; grid-template-columns: 1.1fr .9fr; gap: 48px;
+      padding: 64px 0 48px; align-items: end;
+    }
+    .hero h1 {
+      font-family: var(--serif); font-size: clamp(3.2rem, 8vw, 5.5rem);
+      line-height: .95; font-weight: 500;
+    }
+    .hero h1 em { font-style: italic; color: var(--sage); }
+    .hero-meta { color: var(--muted); line-height: 1.8; max-width: 36ch; }
+    .hero-card {
+      background: #fff; border: 1px solid var(--line); padding: 28px;
+      box-shadow: 0 24px 60px rgba(30,36,33,.06);
+    }
+    .hero-card strong { font-size: 2.4rem; font-family: var(--serif); color: var(--sage); }
+    .panel { display: none; animation: rise .5s ease; }
+    .panel.active { display: block; }
+    @keyframes rise { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+    .stats { display: grid; grid-template-columns: repeat(4,1fr); gap: 16px; margin-bottom: 40px; }
+    .stat { background: #fff; border: 1px solid var(--line); padding: 22px; }
+    .stat span { color: var(--muted); font-size: 13px; text-transform: uppercase; letter-spacing: .08em; }
+    .stat b { display: block; font-family: var(--serif); font-size: 2.2rem; margin-top: 8px; color: var(--sage); }
+    .section-title { font-family: var(--serif); font-size: 2rem; margin-bottom: 24px; border-left: 3px solid var(--gold); padding-left: 16px; }
+    .timeline article {
+      display: grid; grid-template-columns: 120px 1fr; gap: 24px;
+      padding: 28px 0; border-bottom: 1px solid var(--line);
+    }
+    .timeline time { font-weight: 600; color: var(--gold); }
+    .timeline h3 { font-family: var(--serif); font-size: 1.5rem; margin-bottom: 6px; }
+    .chip { display: inline-block; font-size: 12px; padding: 4px 10px; background: #eef4f1; color: var(--sage); margin-right: 6px; margin-top: 8px; border-radius: 2px; }
+    .playlist-grid { display: grid; grid-template-columns: repeat(auto-fill,minmax(300px,1fr)); gap: 20px; }
+    .song {
+      background: #fff; border: 1px solid var(--line); padding: 24px;
+      transition: transform .25s ease, box-shadow .25s ease; cursor: pointer;
+    }
+    .song:hover { transform: translateY(-3px); box-shadow: 0 16px 40px rgba(30,36,33,.08); }
+    .song .artist { color: var(--muted); font-size: 14px; margin: 6px 0 14px; }
+    .play-btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      border: 1px solid var(--ink); background: var(--ink); color: #fff;
+      padding: 10px 16px; font-size: 13px; cursor: pointer;
+    }
+    .resource-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 14px; }
+    .resource {
+      aspect-ratio: 1; background: linear-gradient(145deg,#e8efe9,#d8e4de);
+      border: 1px solid var(--line); position: relative; overflow: hidden;
+    }
+    .resource::after {
+      content: attr(data-label); position: absolute; left: 12px; bottom: 12px;
+      font-size: 12px; background: rgba(255,255,255,.85); padding: 6px 10px;
+    }
+    .back { position: fixed; bottom: 24px; right: 24px; background: var(--ink); color: #fff; padding: 12px 18px; text-decoration: none; font-size: 13px; }
+    @media (max-width: 800px) {
+      .hero { grid-template-columns: 1fr; }
+      .stats { grid-template-columns: repeat(2,1fr); }
+      .timeline article { grid-template-columns: 1fr; }
+      .resource-grid { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <nav>
+      <div class="logo">Ivy · 晨光杂志</div>
+      <div class="nav-links">
+        <button class="active" data-tab="home">首页</button>
+        <button data-tab="timeline">时间轴</button>
+        <button data-tab="playlist">歌单</button>
+        <button data-tab="resources">资源墙</button>
+      </div>
+    </nav>
+
+    <section class="panel active" id="home">
+      <div class="hero">
+        <div>
+          <h1>Ivy 的<br><em>数字花园</em></h1>
+          <p class="hero-meta" style="margin-top:20px">像翻阅一本家庭杂志，记录她来到这个世界的每一天、每一首歌、每一个第一次。</p>
+        </div>
+        <div class="hero-card">
+          <span style="color:var(--muted);font-size:13px">今天 · 2026年6月</span>
+          <div style="margin-top:12px"><strong>91</strong> 天</div>
+          <p style="margin-top:12px;color:var(--muted);line-height:1.6">出生于上海 · 2026.03.05</p>
+        </div>
+      </div>
+      <div class="stats">
+        <div class="stat"><span>记忆</span><b>12</b></div>
+        <div class="stat"><span>照片</span><b>48</b></div>
+        <div class="stat"><span>歌曲</span><b>6</b></div>
+        <div class="stat"><span>里程碑</span><b>9</b></div>
+      </div>
+    </section>
+
+    <section class="panel" id="timeline">
+      <h2 class="section-title">成长时间轴</h2>
+      <div class="timeline">
+        <article>
+          <time>06.04</time>
+          <div><h3>花园启程</h3><p style="color:var(--muted);line-height:1.7">为 Ivy 种下第一棵数字树，开始记录她的成长。</p><span class="chip">日记</span></div>
+        </article>
+        <article>
+          <time>03.15</time>
+          <div><h3>第一次听「小星星」</h3><p style="color:var(--muted);line-height:1.7">哄睡时哼唱的旋律，成为家的声音之一。</p><span class="chip">歌单</span><span class="chip">睡前</span></div>
+        </article>
+        <article>
+          <time>03.05</time>
+          <div><h3>Ivy 来到世界</h3><p style="color:var(--muted);line-height:1.7">上海 · 爸爸妈妈的宝贝。</p><span class="chip">里程碑</span></div>
+        </article>
+      </div>
+    </section>
+
+    <section class="panel" id="playlist">
+      <h2 class="section-title">伴她长大的歌</h2>
+      <div class="playlist-grid">
+        <div class="song">
+          <h3 style="font-family:var(--serif);font-size:1.4rem">小星星</h3>
+          <div class="artist">传统儿歌 · 0 月龄 · 睡前</div>
+          <p style="color:var(--muted);font-size:14px;line-height:1.6">哄睡时常常哼唱，简单温柔的旋律。</p>
+          <button class="play-btn" style="margin-top:16px">♪ 网易云收听</button>
+        </div>
+        <div class="song">
+          <h3 style="font-family:var(--serif);font-size:1.4rem">世上只有妈妈好</h3>
+          <div class="artist">经典儿歌 · 2 月龄</div>
+          <p style="color:var(--muted);font-size:14px;line-height:1.6">外婆抱着唱，Ivy 会安静地听。</p>
+          <button class="play-btn" style="margin-top:16px">♪ 播放本地录音</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel" id="resources">
+      <h2 class="section-title">资源展墙</h2>
+      <div class="resource-grid">
+        <div class="resource" data-label="照片 · 第一次笑"></div>
+        <div class="resource" data-label="视频 · 洗澡"></div>
+        <div class="resource" data-label="音频 · 爸爸哼唱"></div>
+        <div class="resource" data-label="日记 · 花园启程"></div>
+        <div class="resource" data-label="歌单 · 小星星"></div>
+        <div class="resource" data-label="里程碑 · 出生"></div>
+      </div>
+    </section>
+  </div>
+  <a class="back" href="index.html">← 返回选择</a>
+  <script>
+    document.querySelectorAll('[data-tab]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('[data-tab]').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+        btn.classList.add('active');
+        document.getElementById(btn.dataset.tab).classList.add('active');
+      });
+    });
+  </script>
+</body>
+</html>
