@@ -1,0 +1,30 @@
+---
+description: Ivy 数字花园 — 日记/歌单必须下载本地音频，不放外链
+alwaysApply: true
+---
+
+# Ivy 内容记录约定
+
+## 用户偏好（必须遵守）
+
+当用户要求**记录成长日记**或**添加成长歌单/歌曲**时：
+
+1. **必须下载音频**到 `media/audio/YYYY/MM/`，使用 `scripts/fetch-playlist-audio.sh` 或 yt-dlp（B站优先）
+2. **禁止**使用网易云/QQ音乐等外链 `links`
+3. **歌单**须包含：
+   - `assets` 指向本地音频
+   - `lyrics` 指向 `media/lyrics/YYYY/MM/歌名.lrc`
+   - 正文 `<LyricsPlayer audio="..." lrc="..." />` 实现歌词同步
+4. **日记**若涉及听歌，同样嵌入本地音频 + LyricsPlayer（可复用歌单 LRC）
+5. 完成后执行 `npm run catalog:build`（或 `build:all`）确保 catalog 与资源总览更新
+6. 构建时 `scripts/sync-viewer.mjs` 会同步 `audio/`、`lyrics/` 到站点 dist
+
+## 实现前确认
+
+架构级大改仍需先与用户确认；但「记日记/加歌 + 下音频 + 写 LRC」属于已确认的标准流程，可直接执行。
+
+## 参考
+
+- 模板：`templates/journal.md`、`templates/playlist.md`
+- 示例：`content/playlist/2026-06-06-稻香.md`
+- 文档：`docs/guide/playlist.md`
