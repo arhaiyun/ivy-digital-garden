@@ -3,7 +3,7 @@ import { cp, mkdir, rm, stat } from 'node:fs/promises'
 import { join } from 'node:path'
 
 const root = process.cwd()
-const MEDIA_FOLDERS = ['audio', 'photos', 'videos']
+const MEDIA_FOLDERS = ['audio', 'photos', 'videos', 'lyrics']
 
 export async function syncViewer(projectRoot = root) {
   const dist = join(projectRoot, 'viewer', 'dist')

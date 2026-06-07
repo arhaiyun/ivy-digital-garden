@@ -68,6 +68,7 @@ export function parseMarkdownFile(root, filePath) {
     ivy_age_months: frontmatter.ivy_age_months ?? null,
     scene: frontmatter.scene || '',
     memory: frontmatter.memory || '',
+    lyrics: frontmatter.lyrics || '',
     links,
     content: rel,
     link: `/${section}/${stem}`,

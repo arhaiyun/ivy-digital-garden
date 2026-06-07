@@ -9,6 +9,7 @@ scene: ""
 memory: ""
 tags: []
 links: []
+lyrics: /lyrics/YYYY/MM/歌名.lrc
 assets:
   - kind: audio
     path: media/audio/YYYY/MM/filename.m4a
@@ -17,7 +18,7 @@ assets:
 
 # {{title}}
 
-> 一首歌一篇。音频放入 `media/audio/`，正文用 `<audio>` 播放，不放外链。
+> 一首歌一篇。音频放入 `media/audio/`，歌词 LRC 放入 `media/lyrics/`，用 LyricsPlayer 同步滚动。
 
 ## 基本信息
 
@@ -31,8 +32,13 @@ assets:
 
 {{memory}}
 
-## 本地音频
+## 歌词
 
-<!-- <audio controls src="/audio/YYYY/MM/文件名.m4a"></audio> -->
+<LyricsPlayer
+  audio="/audio/YYYY/MM/文件名.m4a"
+  lrc="/lyrics/YYYY/MM/歌名.lrc"
+  title="{{title}}"
+  artist=""
+/>
 
 ## 想对 Ivy 说

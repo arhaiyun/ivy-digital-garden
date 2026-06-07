@@ -17,6 +17,22 @@
 | `scene` | 睡前 / 洗澡 / 外出 等 |
 | `memory` | 为什么选这首（短述） |
 | `assets` | 本地音频（`media/audio/`，必填） |
+| `lyrics` | LRC 歌词路径，如 `/lyrics/2026/06/稻香.lrc` |
+
+## 歌词同步播放
+
+正文使用 `<LyricsPlayer>`，播放时自动高亮并滚动到当前句。LRC 文件放 `media/lyrics/YYYY/MM/`。
+
+```html
+<LyricsPlayer
+  audio="/audio/2026/06/01-daoxiang.m4a"
+  lrc="/lyrics/2026/06/稻香.lrc"
+  title="稻香"
+  artist="周杰伦"
+/>
+```
+
+若与音频略有偏差，可加 `offset`（毫秒，正数整体延后）。
 
 ## 下载音频
 

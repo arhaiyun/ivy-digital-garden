@@ -1,54 +1,62 @@
 <script setup>
+import LyricsPlayer from '../../../shared/vue/LyricsPlayer.vue'
+
 defineProps({
   entries: { type: Array, required: true },
 })
+
+function audioUrl(entry) {
+  const asset = entry.assets?.find((a) => a.kind === 'audio' || a.kind === 'video')
+  return asset?.url || ''
+}
 </script>
 
 <template>
   <div class="candy-list">
     <div v-if="entries.length === 0" class="empty">还没有歌单，用 playlist 模板添加一首吧 ~</div>
-    <a
-      v-for="entry in entries"
-      :key="entry.id"
-      class="candy-item"
-      :href="entry.link"
-    >
-      <div class="candy-icon">♫</div>
-      <div>
-        <strong>{{ entry.title }}</strong>
-        <div class="meta">
-          <span v-if="entry.artist">{{ entry.artist }}</span>
-          <span v-if="entry.ivy_age_months != null"> · {{ entry.ivy_age_months }}月龄</span>
-          <span v-if="entry.scene"> · {{ entry.scene }}</span>
+    <article v-for="entry in entries" :key="entry.id" class="candy-item">
+      <div class="candy-head">
+        <div class="candy-icon">♫</div>
+        <div>
+          <a :href="entry.link"><strong>{{ entry.title }}</strong></a>
+          <div class="meta">
+            <span v-if="entry.artist">{{ entry.artist }}</span>
+            <span v-if="entry.ivy_age_months != null"> · {{ entry.ivy_age_months }}月龄</span>
+            <span v-if="entry.scene"> · {{ entry.scene }}</span>
+          </div>
         </div>
-        <div v-if="entry.assets?.length" class="local-tag">本地音频</div>
       </div>
-    </a>
+      <LyricsPlayer
+        v-if="audioUrl(entry) && entry.lyrics"
+        :audio="audioUrl(entry)"
+        :lrc="entry.lyrics"
+        :title="entry.title"
+        :artist="entry.artist"
+      />
+      <a v-else class="doc-link" :href="entry.link">打开歌单页 →</a>
+    </article>
   </div>
 </template>
 
 <style scoped>
 .candy-list {
   display: grid;
-  gap: 12px;
+  gap: 16px;
 }
 
 .candy-item {
-  display: flex;
-  gap: 14px;
-  align-items: center;
   background: #fff;
   border-radius: 24px;
   padding: 16px 18px;
   border: 2px solid var(--ivy-peach);
-  transition: transform 0.2s, box-shadow 0.2s;
-  text-decoration: none;
-  color: inherit;
+  box-shadow: 0 12px 28px rgba(232, 135, 154, 0.08);
 }
 
-.candy-item:hover {
-  transform: rotate(-1deg) scale(1.01);
-  box-shadow: 0 12px 28px rgba(232, 135, 154, 0.15);
+.candy-head {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  margin-bottom: 12px;
 }
 
 .candy-icon {
@@ -66,6 +74,7 @@ defineProps({
 .candy-item strong {
   font-family: var(--ivy-display);
   font-size: 1.05rem;
+  color: var(--ivy-ink);
 }
 
 .meta {
@@ -74,14 +83,9 @@ defineProps({
   margin-top: 4px;
 }
 
-.local-tag {
-  display: inline-block;
-  margin-top: 8px;
-  font-size: 11px;
-  padding: 4px 8px;
-  border-radius: 8px;
-  background: var(--ivy-mint);
-  color: var(--ivy-ink);
+.doc-link {
+  font-size: 13px;
+  font-family: var(--ivy-display);
 }
 
 .empty {

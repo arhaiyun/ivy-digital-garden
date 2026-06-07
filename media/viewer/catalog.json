@@ -23,7 +23,7 @@
       "audio": 3
     },
     "missingAssets": 0,
-    "updatedAt": "2026-06-07T14:32:49.762Z"
+    "updatedAt": "2026-06-07T14:38:04.722Z"
   },
   "entries": [
     {
@@ -42,6 +42,7 @@
       "ivy_age_months": 3,
       "scene": "亲子互动",
       "memory": "今天和 Ivy 一起听了这首歌。前奏一出来，她就安静下来，好像也被稻香里的温柔留住了。",
+      "lyrics": "/lyrics/2026/06/稻香.lrc",
       "links": [],
       "content": "content/playlist/2026-06-06-稻香.md",
       "link": "/playlist/2026-06-06-稻香",
@@ -51,7 +52,7 @@
           "kind": "audio",
           "path": "media/audio/2026/06/01-daoxiang.m4a",
           "url": "/audio/2026/06/01-daoxiang.m4a",
-          "caption": "",
+          "caption": "稻香 · 周杰伦",
           "exists": true
         }
       ],
@@ -72,6 +73,7 @@
       "ivy_age_months": null,
       "scene": "",
       "memory": "",
+      "lyrics": "/lyrics/2026/06/稻香.lrc",
       "links": [],
       "content": "content/journal/2026-06-06-一起听稻香.md",
       "link": "/journal/2026-06-06-一起听稻香",
@@ -81,7 +83,7 @@
           "kind": "audio",
           "path": "media/audio/2026/06/01-daoxiang.m4a",
           "url": "/audio/2026/06/01-daoxiang.m4a",
-          "caption": "",
+          "caption": "稻香 · 周杰伦",
           "exists": true
         }
       ],
@@ -101,6 +103,7 @@
       "ivy_age_months": null,
       "scene": "",
       "memory": "",
+      "lyrics": "",
       "links": [],
       "content": "content/journal/2026-06-04-花园启程.md",
       "link": "/journal/2026-06-04-花园启程",
@@ -123,6 +126,7 @@
       "ivy_age_months": 0,
       "scene": "睡前",
       "memory": "Ivy 刚出生不久，哄睡时常常哼这首歌，旋律简单温柔，好像她听得出爸爸妈妈在身边。",
+      "lyrics": "/lyrics/2026/03/小星星.lrc",
       "links": [],
       "content": "content/playlist/2026-03-15-小星星.md",
       "link": "/playlist/2026-03-15-小星星",
@@ -132,7 +136,7 @@
           "kind": "audio",
           "path": "media/audio/2026/03/01-xiaoxingxing.mp4",
           "url": "/audio/2026/03/01-xiaoxingxing.mp4",
-          "caption": "",
+          "caption": "小星星 · 儿歌",
           "exists": true
         }
       ],
