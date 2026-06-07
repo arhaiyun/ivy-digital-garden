@@ -16,6 +16,9 @@ features:
   - title: 健康
     details: 体检与疫苗（敏感信息，保持私密）
     link: /health/
+  - title: 成长歌单
+    details: 伴她长大的歌，一首一篇
+    link: /playlist/
   - title: 资源总览
     details: 时间轴、媒体墙与统计仪表盘
     link: /viewer/
@@ -43,5 +46,6 @@ features:
 | 家族 | [family/](./family/) | 故事与亲友留言 |
 | 作品 | [creative/](./creative/) | 涂鸦、手工等 |
 | 愿望 | [wishes/](./wishes/) | 对未来的期许 |
+| 歌单 | [playlist/](./playlist/) | 伴 Ivy 长大的歌曲 |
 
 > 本仓库建议保持 **GitHub 私有**，部署站点时启用访问控制。

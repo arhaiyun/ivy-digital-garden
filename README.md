@@ -12,7 +12,8 @@ ivy-digital-garden/
 │   ├── health/        # 健康记录
 │   ├── family/        # 家族故事
 │   ├── creative/      # 作品存档
-│   └── wishes/        # 愿望清单
+│   ├── wishes/        # 愿望清单
+│   └── playlist/      # 成长歌单
 ├── media/             # 照片、视频、音频（Git LFS）
 ├── data/
 │   ├── ivy.yaml       # Ivy 档案
@@ -40,7 +41,7 @@ npm run import:media -- --from ~/Downloads/batch --date 2026-06-10 --title "第�
 npm run open:all
 ```
 
-详细说明见 [docs/guide/getting-started.md](./docs/guide/getting-started.md)、[catalog-schema.md](./docs/guide/catalog-schema.md)、[import-media.md](./docs/guide/import-media.md)。
+详细说明见 [docs/guide/getting-started.md](./docs/guide/getting-started.md)、[playlist.md](./docs/guide/playlist.md)、[catalog-schema.md](./docs/guide/catalog-schema.md)、[import-media.md](./docs/guide/import-media.md)。
 
 ## 技术栈
 

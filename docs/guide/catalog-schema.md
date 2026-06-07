@@ -13,7 +13,7 @@
 |------|------|------|
 | `id` | ✅ | 与 content 文件名一致，如 `2026-06-04-花园启程` |
 | `date` | ✅ | `YYYY-MM-DD` |
-| `type` | ✅ | `journal` / `milestone` / `health` / `family` / `creative` / `wish` |
+| `type` | ✅ | `journal` / `milestone` / `health` / `family` / `creative` / `wish` / `playlist` |
 | `title` | ✅ | 标题 |
 | `content` | 推荐 | Markdown 路径 |
 | `visibility` | 推荐 | `family` / `private` / `public` |

@@ -6,7 +6,7 @@ set -euo pipefail
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 
 if [[ $# -lt 3 ]]; then
-  echo "用法: ./scripts/new-entry.sh journal|milestone|health|family|creative|wish YYYY-MM-DD 标题"
+  echo "用法: ./scripts/new-entry.sh journal|milestone|health|family|creative|wish|playlist YYYY-MM-DD 标题"
   exit 1
 fi
 
@@ -27,6 +27,7 @@ case "$TYPE" in
   family)    TPL="family.md"; DEST="$ROOT/content/family" ;;
   creative)  TPL="creative.md"; DEST="$ROOT/content/creative" ;;
   wish)      TPL="wish.md"; DEST="$ROOT/content/wishes" ;;
+  playlist)  TPL="playlist.md"; DEST="$ROOT/content/playlist" ;;
   *) echo "未知类型: $TYPE"; exit 1 ;;
 esac
 
@@ -49,11 +50,18 @@ const date = new Date('$DATE' + 'T00:00:00Z')
 console.log(Math.floor((date - birth) / 86400000))
 ")"
 
+AGE_MONTHS="$(node -e "
+const days = Number('$AGE_DAYS')
+if (!Number.isFinite(days) || days < 0) process.exit(0)
+console.log(Math.floor(days / 30))
+")"
+
 while IFS= read -r line; do
   case "$line" in
     'title: ""') printf 'title: "%s"\n' "$TITLE" ;;
     'date: YYYY-MM-DD') printf 'date: %s\n' "$DATE" ;;
     'ivy_age_days: null') printf 'ivy_age_days: %s\n' "${AGE_DAYS:-null}" ;;
+    'ivy_age_months: null') printf 'ivy_age_months: %s\n' "${AGE_MONTHS:-null}" ;;
     '# {{title}}') printf '# %s\n' "$TITLE" ;;
     *) printf '%s\n' "$line" ;;
   esac

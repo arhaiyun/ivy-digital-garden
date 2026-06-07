@@ -2,6 +2,7 @@
 import { readdir, readFile } from 'node:fs/promises'
 import { join, relative } from 'node:path'
 import { parseFrontmatter } from '../.vitepress/sidebar.mjs'
+import { normalizeAssets, normalizeLinks, parseFrontmatterYaml } from './lib/catalog.mjs'
 
 const REQUIRED_FIELDS = ['title', 'date', 'type', 'visibility']
 
@@ -37,6 +38,15 @@ export async function validateContent(root = process.cwd()) {
 
     if (frontmatter.type === 'health' && frontmatter.visibility === 'public') {
       issues.push({ file: rel, message: '健康记录不能设置为 public' })
+    }
+
+    if (frontmatter.type === 'playlist') {
+      const yamlMeta = parseFrontmatterYaml(markdown)
+      const hasLinks = normalizeLinks(yamlMeta.links).length > 0
+      const hasAssets = normalizeAssets(yamlMeta.assets, root).length > 0
+      if (!hasLinks && !hasAssets) {
+        issues.push({ file: rel, message: '歌单建议至少填写 links 或 assets 之一' })
+      }
     }
   }
 

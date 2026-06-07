@@ -78,6 +78,7 @@ const flatAssets = computed(() => {
             <option value="family">家族</option>
             <option value="creative">作品</option>
             <option value="wish">愿望</option>
+            <option value="playlist">歌单</option>
           </select>
           <select v-model="kindFilter">
             <option value="all">全部媒体</option>

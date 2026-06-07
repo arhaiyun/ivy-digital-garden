@@ -106,6 +106,7 @@ function mapTypeToTemplate(type) {
     family: 'family',
     creative: 'creative',
     wish: 'wish',
+    playlist: 'playlist',
   }
   return map[type] || 'journal'
 }

@@ -25,6 +25,7 @@ export default defineConfig({
       { text: '家族', link: '/family/' },
       { text: '作品', link: '/creative/' },
       { text: '愿望', link: '/wishes/' },
+      { text: '歌单', link: '/playlist/' },
     ],
     sidebar: {
       '/journal/': [{ text: '成长日记', items: buildSidebar('content', 'journal') }],
@@ -33,6 +34,7 @@ export default defineConfig({
       '/family/': [{ text: '家族故事', items: buildSidebar('content', 'family') }],
       '/creative/': [{ text: '作品存档', items: buildSidebar('content', 'creative') }],
       '/wishes/': [{ text: '愿望清单', items: buildSidebar('content', 'wishes') }],
+      '/playlist/': [{ text: '成长歌单', items: buildSidebar('content', 'playlist') }],
     },
     footer: {
       message: '仅供家人查看 · 请勿公开索引',

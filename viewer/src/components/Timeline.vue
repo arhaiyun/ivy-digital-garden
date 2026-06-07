@@ -12,6 +12,16 @@ const TYPE_LABEL = {
   family: '家族',
   creative: '作品',
   wish: '愿望',
+  playlist: '歌单',
+}
+
+const PLATFORM = {
+  netease: '网易云',
+  qq: 'QQ音乐',
+  apple: 'Apple Music',
+  spotify: 'Spotify',
+  youtube: 'YouTube',
+  other: '链接',
 }
 
 const groups = computed(() => {
@@ -39,7 +49,13 @@ const groups = computed(() => {
           <h3>
             <a :href="entry.link">{{ entry.title }}</a>
           </h3>
+          <p v-if="entry.artist" class="artist">{{ entry.artist }}<span v-if="entry.ivy_age_months != null"> · {{ entry.ivy_age_months }} 月龄起</span><span v-if="entry.scene"> · {{ entry.scene }}</span></p>
           <p>{{ entry.summary || '暂无摘要' }}</p>
+          <div v-if="entry.links?.length" class="links">
+            <a v-for="link in entry.links" :key="link.url" :href="link.url" target="_blank" rel="noopener" class="link-chip">
+              {{ link.label || PLATFORM[link.platform] || link.platform }}
+            </a>
+          </div>
           <div class="assets">
             <span v-for="asset in entry.assets" :key="asset.path" class="chip" :class="asset.kind">
               {{ asset.kind }} · {{ asset.caption || asset.id }}
@@ -99,6 +115,32 @@ const groups = computed(() => {
   margin: 0;
   color: var(--muted);
   line-height: 1.7;
+}
+
+.artist {
+  margin: 0 0 6px !important;
+  color: var(--text) !important;
+  font-size: 14px;
+}
+
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 10px 0;
+}
+
+.link-chip {
+  font-size: 12px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: #efe9ff;
+  color: #5a4d8a;
+  text-decoration: none;
+}
+
+.link-chip:hover {
+  background: #e2d8ff;
 }
 
 .assets {

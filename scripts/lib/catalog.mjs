@@ -54,6 +54,8 @@ export function parseMarkdownFile(root, filePath) {
   const assetsFromBody = extractAssetsFromMarkdown(markdown, root)
   const assetsFromFrontmatter = normalizeAssets(frontmatter.assets, root)
 
+  const links = normalizeLinks(frontmatter.links)
+
   return {
     id,
     date: frontmatter.date || dateFromStem(stem),
@@ -62,10 +64,15 @@ export function parseMarkdownFile(root, filePath) {
     visibility: frontmatter.visibility || 'family',
     tags: Array.isArray(frontmatter.tags) ? frontmatter.tags : splitTags(frontmatter.tags),
     author: frontmatter.author || '',
+    artist: frontmatter.artist || '',
+    ivy_age_months: frontmatter.ivy_age_months ?? null,
+    scene: frontmatter.scene || '',
+    memory: frontmatter.memory || '',
+    links,
     content: rel,
     link: `/${section}/${stem}`,
     assets: mergeAssets(assetsFromFrontmatter, assetsFromBody),
-    summary: excerptFromMarkdown(markdown),
+    summary: frontmatter.memory || excerptFromMarkdown(markdown),
   }
 }
 
@@ -151,6 +158,30 @@ function excerptFromMarkdown(markdown) {
     .replace(/\s+/g, ' ')
     .trim()
   return body.slice(0, 120)
+}
+
+export function normalizeLinks(links) {
+  if (!links) return []
+  const list = Array.isArray(links) ? links : [links]
+  return list
+    .filter((item) => item?.url)
+    .map((item) => ({
+      platform: item.platform || 'other',
+      url: String(item.url),
+      label: platformLabel(item.platform),
+    }))
+}
+
+export function platformLabel(platform) {
+  const labels = {
+    netease: '网易云',
+    qq: 'QQ音乐',
+    apple: 'Apple Music',
+    spotify: 'Spotify',
+    youtube: 'YouTube',
+    other: '链接',
+  }
+  return labels[platform] || platform
 }
 
 function splitTags(value) {

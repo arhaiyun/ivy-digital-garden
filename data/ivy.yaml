@@ -14,6 +14,13 @@ garden:
   visibility_default: family # family | private | public
 
 # 里程碑快捷标签（可在条目中复用）
+playlist_scenes:
+  - 睡前
+  - 洗澡
+  - 外出
+  - 亲子互动
+  - 节日
+
 milestone_tags:
   - 第一次微笑
   - 第一次发声
