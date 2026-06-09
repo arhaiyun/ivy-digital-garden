@@ -60,5 +60,16 @@ export default defineConfig({
   vite: {
     // 将 media/ 作为静态资源根目录，Markdown 中用 /photos/... 引用
     publicDir: 'media',
+    plugins: [
+      {
+        name: 'ivy-public-media',
+        enforce: 'pre',
+        resolveId(source: string) {
+          if (/^\/(photos|videos|audio|lyrics)\//.test(source)) {
+            return { id: source, external: true }
+          }
+        },
+      },
+    ],
   },
 })

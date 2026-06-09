@@ -12,20 +12,76 @@
     "visibility_default": "family"
   },
   "stats": {
-    "entries": 4,
+    "entries": 5,
     "byType": {
+      "health": 1,
       "journal": 2,
       "playlist": 2
     },
     "byKind": {
-      "photo": 0,
-      "video": 0,
+      "photo": 3,
+      "video": 1,
       "audio": 3
     },
     "missingAssets": 0,
-    "updatedAt": "2026-06-07T14:38:04.722Z"
+    "updatedAt": "2026-06-09T14:32:05.455Z"
   },
   "entries": [
+    {
+      "id": "2026-06-09-脊灰疫苗第二针",
+      "date": "2026-06-09",
+      "type": "health",
+      "title": "脊灰疫苗第二针",
+      "visibility": "family",
+      "tags": [
+        "疫苗",
+        "脊灰疫苗"
+      ],
+      "author": "",
+      "artist": "",
+      "ivy_age_months": null,
+      "scene": "",
+      "memory": "",
+      "lyrics": "",
+      "links": [],
+      "content": "content/health/2026-06-09-脊灰疫苗第二针.md",
+      "link": "/health/2026-06-09-脊灰疫苗第二针",
+      "assets": [
+        {
+          "id": "01-疫苗出门.png",
+          "kind": "photo",
+          "path": "media/photos/2026/06/01-疫苗出门.png",
+          "url": "/photos/2026/06/01-疫苗出门.png",
+          "caption": "出门前，Ivy 笑得很开心",
+          "exists": true
+        },
+        {
+          "id": "02-疫苗出门前.png",
+          "kind": "photo",
+          "path": "media/photos/2026/06/02-疫苗出门前.png",
+          "url": "/photos/2026/06/02-疫苗出门前.png",
+          "caption": "背着 BabyBjörn 准备出发",
+          "exists": true
+        },
+        {
+          "id": "03-接种记录表.png",
+          "kind": "photo",
+          "path": "media/photos/2026/06/03-接种记录表.png",
+          "url": "/photos/2026/06/03-接种记录表.png",
+          "caption": "接种记录（一）",
+          "exists": true
+        },
+        {
+          "id": "01-疫苗接种.mp4",
+          "kind": "video",
+          "path": "media/videos/2026/06/01-疫苗接种.mp4",
+          "url": "/videos/2026/06/01-疫苗接种.mp4",
+          "caption": "疫苗接种",
+          "exists": true
+        }
+      ],
+      "summary": "脊灰疫苗第二针 健康记录仅供家人查看。 疫苗 | 疫苗 | 剂次 | 日期 | 生产企业 | 批号 | 部位 | 接种单位 | | | | | | | | | | 脊灰疫苗 PV | 第 2 针 | 2026 06 09 | 北京科兴 | "
+    },
     {
       "id": "2026-06-06-稻香",
       "date": "2026-06-06",

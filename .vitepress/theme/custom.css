@@ -203,6 +203,14 @@ body::before {
   border-color: rgba(255, 200, 212, 0.4);
 }
 
+.vp-doc img,
+.vp-doc video {
+  max-width: 100%;
+  border-radius: 20px;
+  margin: 12px 0;
+  box-shadow: 0 12px 32px rgba(232, 135, 154, 0.12);
+}
+
 /* Outline aside */
 .VPDocAside .content-container {
   background: rgba(255, 255, 255, 0.9);
