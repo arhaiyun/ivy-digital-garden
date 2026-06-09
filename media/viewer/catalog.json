@@ -12,19 +12,19 @@
     "visibility_default": "family"
   },
   "stats": {
-    "entries": 5,
+    "entries": 6,
     "byType": {
       "health": 1,
-      "journal": 2,
+      "journal": 3,
       "playlist": 2
     },
     "byKind": {
-      "photo": 3,
+      "photo": 4,
       "video": 1,
       "audio": 3
     },
     "missingAssets": 0,
-    "updatedAt": "2026-06-09T14:32:05.455Z"
+    "updatedAt": "2026-06-09T14:38:36.252Z"
   },
   "entries": [
     {
@@ -81,6 +81,38 @@
         }
       ],
       "summary": "脊灰疫苗第二针 健康记录仅供家人查看。 疫苗 | 疫苗 | 剂次 | 日期 | 生产企业 | 批号 | 部位 | 接种单位 | | | | | | | | | | 脊灰疫苗 PV | 第 2 针 | 2026 06 09 | 北京科兴 | "
+    },
+    {
+      "id": "2026-06-09-疫苗接种记录补记",
+      "date": "2026-06-09",
+      "type": "journal",
+      "title": "疫苗接种记录补记",
+      "visibility": "family",
+      "tags": [
+        "疫苗",
+        "健康",
+        "补记"
+      ],
+      "author": "爸爸妈妈",
+      "artist": "",
+      "ivy_age_months": null,
+      "scene": "",
+      "memory": "",
+      "lyrics": "",
+      "links": [],
+      "content": "content/journal/2026-06-09-疫苗接种记录补记.md",
+      "link": "/journal/2026-06-09-疫苗接种记录补记",
+      "assets": [
+        {
+          "id": "03-接种记录表.png",
+          "kind": "photo",
+          "path": "media/photos/2026/06/03-接种记录表.png",
+          "url": "/photos/2026/06/03-接种记录表.png",
+          "caption": "接种记录（一）",
+          "exists": true
+        }
+      ],
+      "summary": "疫苗接种记录补记 根据 Ivy 的《接种记录（一）》把前面几次疫苗补记在这里。今天脊灰第二针的出门照片和视频，见 健康记录：脊灰疫苗第二针 /health/2026 06 09 脊灰疫苗第二针 。 接种记录表 <EntryMedia / 完"
     },
     {
       "id": "2026-06-06-稻香",
