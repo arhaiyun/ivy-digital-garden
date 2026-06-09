@@ -1,4 +1,6 @@
 <script setup>
+import { resolveSitePath } from '../lib/site-path.js'
+
 const props = defineProps({
   entries: { type: Array, required: true },
 })
@@ -36,7 +38,7 @@ function stickerTone(entry) {
       :key="entry.id"
       class="sticker"
       :class="stickerTone(entry)"
-      :href="entry.link"
+      :href="resolveSitePath(entry.link)"
     >
       <div class="icon">{{ TYPE_ICON[entry.type] || '✦' }}</div>
       <small>{{ stickerLabel(entry) }}</small>

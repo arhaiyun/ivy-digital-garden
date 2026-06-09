@@ -1,6 +1,7 @@
 <script setup>
-import { onMounted, onUnmounted, ref, watch } from 'vue'
+import { computed, onMounted, onUnmounted, ref, watch } from 'vue'
 import { findActiveLineIndex, parseLrc } from '../lyrics/parse-lrc.mjs'
+import { resolveSitePath } from '../site-path.mjs'
 
 const props = defineProps({
   audio: { type: String, required: true },
@@ -19,12 +20,15 @@ const error = ref('')
 
 let rafId = 0
 
+const audioSrc = computed(() => resolveSitePath(props.audio))
+const lrcSrc = computed(() => resolveSitePath(props.lrc))
+
 async function loadLrc() {
   if (!props.lrc) return
   loading.value = true
   error.value = ''
   try {
-    const response = await fetch(props.lrc)
+    const response = await fetch(lrcSrc.value)
     if (!response.ok) throw new Error(`歌词加载失败 (${response.status})`)
     lines.value = parseLrc(await response.text(), props.offset)
   } catch (err) {
@@ -98,7 +102,7 @@ watch(() => [props.lrc, props.offset], loadLrc)
       ref="audioRef"
       class="player-audio"
       controls
-      :src="audio"
+      :src="audioSrc"
       preload="metadata"
       @play="startTrack"
       @pause="stopTrack"

@@ -1,5 +1,6 @@
 <script setup>
 import LyricsPlayer from '../../../shared/vue/LyricsPlayer.vue'
+import { resolveSitePath } from '../lib/site-path.js'
 
 defineProps({
   entries: { type: Array, required: true },
@@ -7,7 +8,11 @@ defineProps({
 
 function audioUrl(entry) {
   const asset = entry.assets?.find((a) => a.kind === 'audio' || a.kind === 'video')
-  return asset?.url || ''
+  return asset?.url ? resolveSitePath(asset.url) : ''
+}
+
+function lyricsUrl(entry) {
+  return entry.lyrics ? resolveSitePath(entry.lyrics) : ''
 }
 </script>
 
@@ -18,7 +23,7 @@ function audioUrl(entry) {
       <div class="candy-head">
         <div class="candy-icon">♫</div>
         <div>
-          <a :href="entry.link"><strong>{{ entry.title }}</strong></a>
+          <a :href="resolveSitePath(entry.link)"><strong>{{ entry.title }}</strong></a>
           <div class="meta">
             <span v-if="entry.artist">{{ entry.artist }}</span>
             <span v-if="entry.ivy_age_months != null"> · {{ entry.ivy_age_months }}月龄</span>
@@ -27,13 +32,13 @@ function audioUrl(entry) {
         </div>
       </div>
       <LyricsPlayer
-        v-if="audioUrl(entry) && entry.lyrics"
+        v-if="audioUrl(entry) && lyricsUrl(entry)"
         :audio="audioUrl(entry)"
-        :lrc="entry.lyrics"
+        :lrc="lyricsUrl(entry)"
         :title="entry.title"
         :artist="entry.artist"
       />
-      <a v-else class="doc-link" :href="entry.link">打开歌单页 →</a>
+      <a v-else class="doc-link" :href="resolveSitePath(entry.link)">打开歌单页 →</a>
     </article>
   </div>
 </template>

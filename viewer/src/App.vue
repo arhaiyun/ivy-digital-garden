@@ -3,6 +3,7 @@ import { computed, onMounted, ref } from 'vue'
 import Timeline from './components/Timeline.vue'
 import Playlist from './components/Playlist.vue'
 import ResourceGrid from './components/ResourceGrid.vue'
+import { resolveSitePath } from './lib/site-path.js'
 
 const catalog = ref(null)
 const error = ref('')
@@ -75,7 +76,7 @@ const playlistEntries = computed(() => entries.value.filter((e) => e.type === 'p
             今天是你来到世界的第 <strong>{{ ageDays }}</strong> 天
           </p>
           <p v-else class="hero-sub">欢迎来到 Ivy 的资源总览</p>
-          <a class="doc-link" href="/">← 返回文档站</a>
+          <a class="doc-link" :href="resolveSitePath('/')">← 返回文档站</a>
         </div>
         <div class="pill-grid">
           <div v-for="pill in pills" :key="pill.label" class="pill" :class="pill.tone">

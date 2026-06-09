@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import { useData } from 'vitepress'
+import { useData, withBase } from 'vitepress'
 
 type Asset = {
   kind?: string
@@ -19,7 +19,7 @@ const assets = computed(() => {
 })
 
 function toPublicUrl(path: string) {
-  return `/${path.replace(/^media\//, '')}`
+  return withBase(`/${path.replace(/^media\//, '')}`)
 }
 </script>
 

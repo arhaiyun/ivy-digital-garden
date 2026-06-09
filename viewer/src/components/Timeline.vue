@@ -1,4 +1,6 @@
 <script setup>
+import { resolveSitePath } from '../lib/site-path.js'
+
 defineProps({
   entries: { type: Array, required: true },
 })
@@ -12,7 +14,7 @@ const dots = ['peach', 'lav', 'mint']
     <div v-for="(entry, index) in entries" :key="entry.id" class="dot-event">
       <div class="dot" :class="dots[index % dots.length]" />
       <div>
-        <a :href="entry.link"><strong>{{ entry.title }}</strong></a>
+        <a :href="resolveSitePath(entry.link)"><strong>{{ entry.title }}</strong></a>
         <div class="meta">{{ entry.date }}<span v-if="entry.scene"> · {{ entry.scene }}</span></div>
         <p v-if="entry.summary">{{ entry.summary }}</p>
       </div>

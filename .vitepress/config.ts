@@ -7,7 +7,10 @@ const ivyYaml = parseYaml(readFileSync('data/ivy.yaml', 'utf8')) as {
   profile?: { birth_date?: string }
 }
 
+const siteBase = process.env.VITEPRESS_BASE || '/'
+
 export default defineConfig({
+  base: siteBase,
   lang: 'zh-CN',
   title: "Ivy 糖果云朵",
   description: 'Ivy 小公主的成长档案 — 家人私密',

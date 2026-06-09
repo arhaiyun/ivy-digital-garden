@@ -15,6 +15,7 @@
     "viewer:build": "npm run viewer:prepare && npm run viewer:install && npm --prefix viewer run build",
     "viewer:sync": "node scripts/sync-viewer.mjs",
     "build:all": "npm run viewer:build && npm run build && npm run viewer:sync",
+    "build:pages": "VITEPRESS_BASE=/ivy-digital-garden/ npm run build:all",
     "start:all": "npm run build:all && npm run preview",
     "open:all": "npm run build:all && vitepress preview --host 127.0.0.1 --port 4173 & sleep 2 && open http://127.0.0.1:4173/ && open http://127.0.0.1:4173/viewer/",
     "test": "node --test tests/*.test.mjs",
