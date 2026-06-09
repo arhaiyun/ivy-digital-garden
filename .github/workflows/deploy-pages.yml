@@ -5,16 +5,17 @@ on:
     branches: [main]
   workflow_dispatch:
 
-# peaceiris/actions-gh-pages 需要写入 gh-pages 分支
 permissions:
   contents: write
+  pages: write
+  id-token: write
 
 concurrency:
   group: pages
   cancel-in-progress: true
 
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -43,15 +44,30 @@ jobs:
         run: touch .vitepress/dist/.nojekyll
 
       - name: Verify build output
-        run: |
-          test -f .vitepress/dist/index.html
-          test -f .vitepress/dist/404.html
-          ls -la .vitepress/dist | head -20
+        run: test -f .vitepress/dist/index.html
 
-      - name: Deploy to gh-pages branch
+      # 供 Settings → Pages →「从分支部署 → gh-pages」使用
+      - name: Publish to gh-pages branch
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: .vitepress/dist
           publish_branch: gh-pages
           force_orphan: true
+
+      # 供 Settings → Pages →「GitHub Actions」使用
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: .vitepress/dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy via GitHub Actions
+        id: deployment
+        uses: actions/deploy-pages@v4
