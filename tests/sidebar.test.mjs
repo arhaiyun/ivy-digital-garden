@@ -10,8 +10,8 @@ test('buildSidebar lists dated entries newest first and skips index pages', asyn
   await mkdir(join(contentRoot, 'journal'), { recursive: true })
   await writeFile(join(contentRoot, 'journal', 'index.md'), '# Journal\n')
   await writeFile(
-    join(contentRoot, 'journal', '2026-06-04-花园启程.md'),
-    '---\ntitle: 花园启程\ndate: 2026-06-04\n---\n# 花园启程\n',
+    join(contentRoot, 'journal', '2026-03-05-花园启程.md'),
+    '---\ntitle: 花园启程\ndate: 2026-03-05\n---\n# 花园启程\n',
   )
   await writeFile(
     join(contentRoot, 'journal', '2026-06-10-第一次笑.md'),
@@ -21,6 +21,6 @@ test('buildSidebar lists dated entries newest first and skips index pages', asyn
   assert.deepEqual(buildSidebar(contentRoot, 'journal'), [
     { text: '栏目首页', link: '/journal/' },
     { text: '第一次笑', link: '/journal/2026-06-10-第一次笑' },
-    { text: '花园启程', link: '/journal/2026-06-04-花园启程' },
+    { text: '花园启程', link: '/journal/2026-03-05-花园启程' },
   ])
 })

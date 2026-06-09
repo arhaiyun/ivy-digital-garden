@@ -11,6 +11,8 @@ assets: []
 
 # {{title}}
 
+<JournalDate />
+
 ## 今日小事
 
 -
@@ -25,7 +27,5 @@ assets: []
 <!--     path: media/photos/2026/06/example.jpg -->
 <!--     caption: 描述 -->
 
-<!-- 方式二：正文中直接引用 -->
-<!-- ![描述](/photos/2026/06/example.jpg) -->
-<!-- <video controls src="/videos/2026/06/example.mp4"></video> -->
-<!-- <audio controls src="/audio/2026/06/example.m4a"></audio> -->
+<!-- 方式二：正文组件 -->
+<!-- <EntryMedia /> -->

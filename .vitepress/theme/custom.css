@@ -203,6 +203,14 @@ body::before {
   border-color: rgba(255, 200, 212, 0.4);
 }
 
+.journal-date {
+  text-align: center;
+  font-family: var(--ivy-display);
+  font-size: 1rem;
+  color: var(--ivy-peach-deep);
+  margin: -0.2em 0 1.2em;
+}
+
 .vp-doc img,
 .vp-doc video {
   max-width: 100%;

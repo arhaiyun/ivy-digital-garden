@@ -16,8 +16,9 @@ alwaysApply: true
    - `lyrics` 指向 `media/lyrics/YYYY/MM/歌名.lrc`
    - 正文 `<LyricsPlayer audio="..." lrc="..." />` 实现歌词同步
 4. **日记**若涉及听歌，同样嵌入本地音频 + LyricsPlayer（可复用歌单 LRC）
-5. 完成后执行 `npm run catalog:build`（或 `build:all`）确保 catalog 与资源总览更新
-6. 构建时 `scripts/sync-viewer.mjs` 会同步 `audio/`、`lyrics/` 到站点 dist
+5. **日记**正文标题下须加 `<JournalDate />`，`date` 填实际发生日期，`ivy_age_days` 按出生日计算
+6. 完成后执行 `npm run catalog:build`（或 `build:all`）确保 catalog 与资源总览更新
+7. 构建时 `scripts/sync-viewer.mjs` 会同步 `audio/`、`lyrics/` 到站点 dist
 
 ## 实现前确认
 

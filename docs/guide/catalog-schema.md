@@ -11,7 +11,7 @@
 
 | 字段 | 必填 | 说明 |
 |------|------|------|
-| `id` | ✅ | 与 content 文件名一致，如 `2026-06-04-花园启程` |
+| `id` | ✅ | 与 content 文件名一致，如 `2026-03-05-花园启程` |
 | `date` | ✅ | `YYYY-MM-DD` |
 | `type` | ✅ | `journal` / `milestone` / `health` / `family` / `creative` / `wish` / `playlist` |
 | `title` | ✅ | 标题 |
