@@ -12,21 +12,53 @@
     "visibility_default": "family"
   },
   "stats": {
-    "entries": 7,
+    "entries": 8,
     "byType": {
       "health": 1,
-      "journal": 4,
+      "journal": 5,
       "playlist": 2
     },
     "byKind": {
       "photo": 4,
-      "video": 3,
+      "video": 4,
       "audio": 3
     },
     "missingAssets": 0,
-    "updatedAt": "2026-06-09T15:41:56.743Z"
+    "updatedAt": "2026-06-13T06:47:21.797Z"
   },
   "entries": [
+    {
+      "id": "2026-06-13-Ivy一百天",
+      "date": "2026-06-13",
+      "type": "journal",
+      "title": "Ivy 一百天",
+      "visibility": "family",
+      "tags": [
+        "一百天",
+        "成长",
+        "祝福"
+      ],
+      "author": "爸爸妈妈",
+      "artist": "",
+      "ivy_age_months": null,
+      "scene": "",
+      "memory": "",
+      "lyrics": "",
+      "links": [],
+      "content": "content/journal/2026-06-13-Ivy一百天.md",
+      "link": "/journal/2026-06-13-Ivy一百天",
+      "assets": [
+        {
+          "id": "微信视频2026-06-13_144351_722.mp4",
+          "kind": "video",
+          "path": "media/videos/2026/06/微信视频2026-06-13_144351_722.mp4",
+          "url": "/videos/2026/06/微信视频2026-06-13_144351_722.mp4",
+          "caption": "Ivy 一百天的记录",
+          "exists": true
+        }
+      ],
+      "summary": "Ivy 一百天 <JournalDate / 第一百天 今天是 Ivy 来到我们身边的第 100 天。 一百天，说长不长，却已经足够让一个家发生很多温柔的变化。我们开始熟悉你的哭声、笑声、困了的小表情，也开始在每一个普通日子里，认真学习怎样"
+    },
     {
       "id": "2026-06-09-脊灰疫苗第二针",
       "date": "2026-06-09",
