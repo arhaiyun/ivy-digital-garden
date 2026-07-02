@@ -1,0 +1,374 @@
+{
+  "profile": {
+    "name": "Ivy",
+    "name_zh": "周芃玥",
+    "birth_date": "2026-03-05",
+    "birth_place": "上海",
+    "gender": ""
+  },
+  "garden": {
+    "started_at": "2026-06-04",
+    "language": "zh-CN",
+    "visibility_default": "family"
+  },
+  "stats": {
+    "entries": 10,
+    "byType": {
+      "health": 1,
+      "journal": 7,
+      "playlist": 2
+    },
+    "byKind": {
+      "photo": 4,
+      "video": 6,
+      "audio": 3
+    },
+    "missingAssets": 0,
+    "updatedAt": "2026-07-02T01:50:45.173Z"
+  },
+  "entries": [
+    {
+      "id": "2026-06-26-第一次翻身",
+      "date": "2026-06-26",
+      "type": "journal",
+      "title": "第一次翻身",
+      "visibility": "family",
+      "tags": [
+        "里程碑",
+        "翻身",
+        "成长",
+        "第一次"
+      ],
+      "author": "爸爸妈妈",
+      "artist": "",
+      "ivy_age_months": null,
+      "scene": "",
+      "memory": "",
+      "lyrics": "",
+      "links": [],
+      "content": "content/journal/2026-06-26-第一次翻身.md",
+      "link": "/journal/2026-06-26-第一次翻身",
+      "assets": [
+        {
+          "id": "05-第一次翻身.mp4",
+          "kind": "video",
+          "path": "media/videos/2026/06/05-第一次翻身.mp4",
+          "url": "/videos/2026/06/05-第一次翻身.mp4",
+          "caption": "Ivy 自己给自己打气，完成人生第一次主动翻身",
+          "exists": true
+        }
+      ],
+      "summary": "第一次翻身 <JournalDate / 今日小事 今天 Ivy 完成了人生第一次 主动翻身 ，爸爸妈妈在旁边看得又惊喜又感动 翻之前她像是在给自己打气，小胳膊小腿使劲儿蹬，嘴里还哼哼着，一副「我可以的」模样 试了好几次，终于一下子翻了过去"
+    },
+    {
+      "id": "2026-06-19-跟Ivy在一起",
+      "date": "2026-06-19",
+      "type": "journal",
+      "title": "跟 Ivy 在一起的时间",
+      "visibility": "family",
+      "tags": [
+        "亲子",
+        "日常",
+        "陪伴"
+      ],
+      "author": "爸爸妈妈",
+      "artist": "",
+      "ivy_age_months": null,
+      "scene": "",
+      "memory": "",
+      "lyrics": "",
+      "links": [],
+      "content": "content/journal/2026-06-19-跟Ivy在一起.md",
+      "link": "/journal/2026-06-19-跟Ivy在一起",
+      "assets": [
+        {
+          "id": "04-跟Ivy在一起.mp4",
+          "kind": "video",
+          "path": "media/videos/2026/06/04-跟Ivy在一起.mp4",
+          "url": "/videos/2026/06/04-跟Ivy在一起.mp4",
+          "caption": "和 Ivy 在一起的晚间时光 · 2026-06-19",
+          "exists": true
+        }
+      ],
+      "summary": "跟 Ivy 在一起的时间 <JournalDate / 今日小事 晚上把这一段和 Ivy 在一起的时光录了下来，想留住她现在还很小、还很软、还很爱撒娇的样子 她躺在身边，咿咿呀呀，手舞足蹈，好像有很多话想跟我们说 明明只是很普通的一个晚上，"
+    },
+    {
+      "id": "2026-06-13-Ivy一百天",
+      "date": "2026-06-13",
+      "type": "journal",
+      "title": "Ivy 一百天",
+      "visibility": "family",
+      "tags": [
+        "一百天",
+        "成长",
+        "祝福"
+      ],
+      "author": "爸爸妈妈",
+      "artist": "",
+      "ivy_age_months": null,
+      "scene": "",
+      "memory": "",
+      "lyrics": "",
+      "links": [],
+      "content": "content/journal/2026-06-13-Ivy一百天.md",
+      "link": "/journal/2026-06-13-Ivy一百天",
+      "assets": [
+        {
+          "id": "微信视频2026-06-13_144351_722.mp4",
+          "kind": "video",
+          "path": "media/videos/2026/06/微信视频2026-06-13_144351_722.mp4",
+          "url": "/videos/2026/06/微信视频2026-06-13_144351_722.mp4",
+          "caption": "Ivy 一百天的记录",
+          "exists": true
+        }
+      ],
+      "summary": "Ivy 一百天 <JournalDate / 第一百天 今天是 Ivy 来到我们身边的第 100 天。 一百天，说长不长，却已经足够让一个家发生很多温柔的变化。我们开始熟悉你的哭声、笑声、困了的小表情，也开始在每一个普通日子里，认真学习怎样"
+    },
+    {
+      "id": "2026-06-09-脊灰疫苗第二针",
+      "date": "2026-06-09",
+      "type": "health",
+      "title": "脊灰疫苗第二针",
+      "visibility": "family",
+      "tags": [
+        "疫苗",
+        "脊灰疫苗"
+      ],
+      "author": "",
+      "artist": "",
+      "ivy_age_months": null,
+      "scene": "",
+      "memory": "",
+      "lyrics": "",
+      "links": [],
+      "content": "content/health/2026-06-09-脊灰疫苗第二针.md",
+      "link": "/health/2026-06-09-脊灰疫苗第二针",
+      "assets": [
+        {
+          "id": "01-疫苗出门.png",
+          "kind": "photo",
+          "path": "media/photos/2026/06/01-疫苗出门.png",
+          "url": "/photos/2026/06/01-疫苗出门.png",
+          "caption": "出门前，Ivy 笑得很开心",
+          "exists": true
+        },
+        {
+          "id": "02-疫苗出门前.png",
+          "kind": "photo",
+          "path": "media/photos/2026/06/02-疫苗出门前.png",
+          "url": "/photos/2026/06/02-疫苗出门前.png",
+          "caption": "背着 BabyBjörn 准备出发",
+          "exists": true
+        },
+        {
+          "id": "03-接种记录表.png",
+          "kind": "photo",
+          "path": "media/photos/2026/06/03-接种记录表.png",
+          "url": "/photos/2026/06/03-接种记录表.png",
+          "caption": "接种记录（一）",
+          "exists": true
+        },
+        {
+          "id": "01-疫苗接种.mp4",
+          "kind": "video",
+          "path": "media/videos/2026/06/01-疫苗接种.mp4",
+          "url": "/videos/2026/06/01-疫苗接种.mp4",
+          "caption": "疫苗接种",
+          "exists": true
+        }
+      ],
+      "summary": "脊灰疫苗第二针 健康记录仅供家人查看。 疫苗 | 疫苗 | 剂次 | 日期 | 生产企业 | 批号 | 部位 | 接种单位 | | | | | | | | | | 脊灰疫苗 PV | 第 2 针 | 2026 06 09 | 北京科兴 | "
+    },
+    {
+      "id": "2026-06-09-疫苗接种记录补记",
+      "date": "2026-06-09",
+      "type": "journal",
+      "title": "疫苗接种记录补记",
+      "visibility": "family",
+      "tags": [
+        "疫苗",
+        "健康",
+        "补记"
+      ],
+      "author": "爸爸妈妈",
+      "artist": "",
+      "ivy_age_months": null,
+      "scene": "",
+      "memory": "",
+      "lyrics": "",
+      "links": [],
+      "content": "content/journal/2026-06-09-疫苗接种记录补记.md",
+      "link": "/journal/2026-06-09-疫苗接种记录补记",
+      "assets": [
+        {
+          "id": "03-接种记录表.png",
+          "kind": "photo",
+          "path": "media/photos/2026/06/03-接种记录表.png",
+          "url": "/photos/2026/06/03-接种记录表.png",
+          "caption": "接种记录（一）",
+          "exists": true
+        }
+      ],
+      "summary": "疫苗接种记录补记 <JournalDate / 根据 Ivy 的《接种记录（一）》把前面几次疫苗补记在这里。今天脊灰第二针的出门照片和视频，见 健康记录：脊灰疫苗第二针 /health/2026 06 09 脊灰疫苗第二针 。 接种记录表 "
+    },
+    {
+      "id": "2026-06-06-稻香",
+      "date": "2026-06-06",
+      "type": "playlist",
+      "title": "稻香",
+      "visibility": "family",
+      "tags": [
+        "流行",
+        "亲子互动",
+        "周杰伦"
+      ],
+      "author": "",
+      "artist": "周杰伦",
+      "ivy_age_months": 3,
+      "scene": "亲子互动",
+      "memory": "今天和 Ivy 一起听了这首歌。前奏一出来，她就安静下来，好像也被稻香里的温柔留住了。",
+      "lyrics": "/lyrics/2026/06/稻香.lrc",
+      "links": [],
+      "content": "content/playlist/2026-06-06-稻香.md",
+      "link": "/playlist/2026-06-06-稻香",
+      "assets": [
+        {
+          "id": "01-daoxiang.m4a",
+          "kind": "audio",
+          "path": "media/audio/2026/06/01-daoxiang.m4a",
+          "url": "/audio/2026/06/01-daoxiang.m4a",
+          "caption": "稻香 · 周杰伦",
+          "exists": true
+        }
+      ],
+      "summary": "今天和 Ivy 一起听了这首歌。前奏一出来，她就安静下来，好像也被稻香里的温柔留住了。"
+    },
+    {
+      "id": "2026-06-06-跟妈妈对话",
+      "date": "2026-06-06",
+      "type": "journal",
+      "title": "跟妈妈对话",
+      "visibility": "family",
+      "tags": [
+        "亲子",
+        "对话",
+        "日常"
+      ],
+      "author": "爸爸妈妈",
+      "artist": "",
+      "ivy_age_months": null,
+      "scene": "",
+      "memory": "",
+      "lyrics": "",
+      "links": [],
+      "content": "content/journal/2026-06-06-跟妈妈对话.md",
+      "link": "/journal/2026-06-06-跟妈妈对话",
+      "assets": [
+        {
+          "id": "02-跟妈妈对话.mp4",
+          "kind": "video",
+          "path": "media/videos/2026/06/02-跟妈妈对话.mp4",
+          "url": "/videos/2026/06/02-跟妈妈对话.mp4",
+          "caption": "Ivy 躺在游戏垫上跟妈妈说话",
+          "exists": true
+        }
+      ],
+      "summary": "跟妈妈对话 <JournalDate / 今日小事 妈妈俯身在游戏垫边跟 Ivy 说话，Ivy 仰着头笑得好开心 她穿着粉色连体衣，躺在小枕头上，手舞足蹈，像真的在回应妈妈 旁边放着黑白花色的视觉卡、纸尿裤和毛绒玩具，就是日常居家的一角 视"
+    },
+    {
+      "id": "2026-06-06-一起听稻香",
+      "date": "2026-06-06",
+      "type": "journal",
+      "title": "一起听稻香",
+      "visibility": "family",
+      "tags": [
+        "音乐",
+        "亲子"
+      ],
+      "author": "爸爸妈妈",
+      "artist": "",
+      "ivy_age_months": null,
+      "scene": "",
+      "memory": "",
+      "lyrics": "/lyrics/2026/06/稻香.lrc",
+      "links": [],
+      "content": "content/journal/2026-06-06-一起听稻香.md",
+      "link": "/journal/2026-06-06-一起听稻香",
+      "assets": [
+        {
+          "id": "01-daoxiang.m4a",
+          "kind": "audio",
+          "path": "media/audio/2026/06/01-daoxiang.m4a",
+          "url": "/audio/2026/06/01-daoxiang.m4a",
+          "caption": "稻香 · 周杰伦",
+          "exists": true
+        }
+      ],
+      "summary": "一起听稻香 <JournalDate / 今日小事 今天和 Ivy 一起听了周杰伦的《稻香》 旋律一响，她安安静静地听着，好像也被歌里的温柔留住了 想对 Ivy 说 稻香里唱着回家、写着童年。希望你长大以后，再听到这首歌时，还能想起今天——"
+    },
+    {
+      "id": "2026-03-15-小星星",
+      "date": "2026-03-15",
+      "type": "playlist",
+      "title": "小星星",
+      "visibility": "family",
+      "tags": [
+        "儿歌",
+        "睡前",
+        "经典"
+      ],
+      "author": "",
+      "artist": "传统儿歌",
+      "ivy_age_months": 0,
+      "scene": "睡前",
+      "memory": "Ivy 刚出生不久，哄睡时常常哼这首歌，旋律简单温柔，好像她听得出爸爸妈妈在身边。",
+      "lyrics": "/lyrics/2026/03/小星星.lrc",
+      "links": [],
+      "content": "content/playlist/2026-03-15-小星星.md",
+      "link": "/playlist/2026-03-15-小星星",
+      "assets": [
+        {
+          "id": "01-xiaoxingxing.mp4",
+          "kind": "audio",
+          "path": "media/audio/2026/03/01-xiaoxingxing.mp4",
+          "url": "/audio/2026/03/01-xiaoxingxing.mp4",
+          "caption": "小星星 · 儿歌",
+          "exists": true
+        }
+      ],
+      "summary": "Ivy 刚出生不久，哄睡时常常哼这首歌，旋律简单温柔，好像她听得出爸爸妈妈在身边。"
+    },
+    {
+      "id": "2026-03-05-花园启程",
+      "date": "2026-03-05",
+      "type": "journal",
+      "title": "花园启程",
+      "visibility": "family",
+      "tags": [
+        "出生",
+        "惊蛰",
+        "启程"
+      ],
+      "author": "爸爸妈妈",
+      "artist": "",
+      "ivy_age_months": null,
+      "scene": "",
+      "memory": "",
+      "lyrics": "",
+      "links": [],
+      "content": "content/journal/2026-03-05-花园启程.md",
+      "link": "/journal/2026-03-05-花园启程",
+      "assets": [
+        {
+          "id": "01-ivy出生.mp4",
+          "kind": "video",
+          "path": "media/videos/2026/03/01-ivy出生.mp4",
+          "url": "/videos/2026/03/01-ivy出生.mp4",
+          "caption": "Ivy 出生 · 2026-03-05 10:28",
+          "exists": true
+        }
+      ],
+      "summary": "花园启程 <JournalDate / 惊蛰·初见 2026年3月5日，惊蛰。 春雷乍响，草木萌新，世间万物都在奔赴新生。 我的小宝贝周芃玥，英文名 Ivy， 在今日10:28，如约来到我们身边。 六斤三两六，小小的身子，软软的啼哭， 是这"
+    }
+  ]
+}
